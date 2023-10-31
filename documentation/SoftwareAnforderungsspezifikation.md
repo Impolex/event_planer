@@ -1,15 +1,16 @@
-# Letsevent
+# LetsEvent
 ## Softwareanforderungen
+> Bei dieser Vorlage handelt es sich um eine vereinfachte Version, die auf den Dokumentationsvorlagen von IBM Rational Unified Process (RUP) basiert.
 
 ### 1. Einleitung
 
 #### 1.1 Übersicht
->Das Programm bietet viele innovative Eventplanungsfeatures um möglichst jedem Nutzer die Planung eigener Events zu ermöglichen, dazu ist die Nutzung komplett kostenlos. Zusätzlich bietet es eine hervorragenden Übersicht über alle anstehenden Events durch eine integrierte Kalenderansicht. Die Chatfunktion hilft mit anderen Nutzern in Kontakt zu bleiben und auch gemeinsam ein Event zu planen, ohne auf einen anderen Kommunikationsweg ausweichen zu müssen. 
+>LetsEvent ist ein sogenannter "event-planer", welcher viele innovative Eventplanungsfeatures bietet, um möglichst jedem Nutzer die Planung eigener Events zu ermöglichen, dazu ist die Nutzung komplett kostenlos. Zusätzlich bietet es eine hervorragende Übersicht über alle anstehenden Events durch eine integrierte Kalenderansicht. Die Chatfunktion hilft mit anderen Nutzern in Kontakt zu bleiben und auch gemeinsam ein Event zu planen, ohne auf einen anderen Kommunikationsweg ausweichen zu müssen. 
 
 Geplante Features sind:
 
 * Account System:
-Es soll die Möglichkeit geben sich einen Account zu erstellen um die Anwendung geräteübergreifend nutzen zu können. Die Accountdaten werden in einer Benutzerdatenbank gespeichert. Der Benutzer soll sich über seinen Nutzernamen und sein Passwort anmelden können und zur Verifikation eine Emailadresse hinterlegen. Die Email und das Passwort sollen verschlüsselt und nicht einsehbar gespeichert werden.
+Es soll die Möglichkeit geben sich einen Account zu erstellen um die Anwendung geräteübergreifend nutzen zu können. Die Accountdaten werden in einer Benutzerdatenbank gespeichert. Der Benutzer soll sich über seinen Nutzernamen und sein Passwort anmelden können, wobei das Passwort verschlüsselt gespeichert werden soll.
 
 * Events erstellen:
 Jeder Benutzer soll die Möglichkeit haben ein eigenes Event zu erstellen. Dabei ist die im folgenden Mockup gegebene Form vorgegeben. Jeder Benutzer kann darauf hin andere Benutzer zu seinem Event einladen, beispielsweise über den Benutzernamen.
@@ -18,17 +19,24 @@ Jeder Benutzer soll die Möglichkeit haben ein eigenes Event zu erstellen. Dabei
 Wenn ein Benutzer zu einem Event eingeladen wurde soll er eine Nachricht bekommen mit einer kurzen Zusammenfassung des Events und der Möglichkeit direkt zu- oder abzusagen. Er kann auch die kompletten Informationen einsehen, da der eingeladene Benutzer über die Nachricht auf die Seite des Events gelangen kann wo er alle verfügbaren Informationen einsehen kann.
 
 * Kalenderansicht:
-Auf der Startseite ist ein Kalender implementiert, welcher alle anstehenden Events enhält. Dabei wird auch angezeigt wann das nächste Event ansteht. Sollte ein Benutzer einem neuen Event beitreten wird dieses automatisch in den Kalender übernommen.
+Auf der Startseite ist ein Kalender implementiert, welcher alle anstehenden Events enthält. Dabei wird auch angezeigt wann das nächste Event ansteht. Sollte ein Benutzer einem neuen Event beitreten wird dieses automatisch in den Kalender übernommen.
 
 * Gruppen:
 Ein Benutzer kann eine Gruppe erstellen. Zu dieser Gruppe kann er beliebig viele andere Benutzer einladen. Gruppen besitzen einen Gruppenchat über den sich die Mitglieder unterhalten können. Es können auch ganze Gruppen zu einem Event eingeladen werden, sodass nicht jedes Mitglied einzeln eingeladen werden muss. Ein Benutzer kann eine beliebige Anzahl von Gruppen erstellen und gleichzeitig Mitglied in beliebig vielen Gruppen sein.
 
 
 #### 1.2 Geltungsbereich
-> Was wird in diesem Dokument behandelt (nicht behandelt)? Ist es für Ihr gesamtes System oder ein Subsystem? Deckt es sowohl funktionale als auch nichtfunktionale Anforderungen ab? (Werden Sie einige Anforderungen in ein anderes Dokument auslagern?) In diesem Dokument sollen alle Grundfunktionalitäten des Programms Letsevent behandelt werden. Es beinhaltet einen Überblick über das Programm und die geplanten Features.
+>Dieses Dokument beschreibt die Anforderungen des gesamten Projektes, sowohl funktionale als auch nicht funktionale, sowie technische Einschränkungen. Wenn die Erklärung, beispielsweise einer Anforderung, eine Grafik benötigt, wird diese mit einem Link auf diese Grafik, welche sich auf unserem GitHub repository befindet, hinterlegt. Dieses Dokument gilt **nicht** als Dokumentation oder ähnliches zu LetsEvent. Eine Dokumentation steht nach Veröffentlichung des Projektes, als eigenständiges Dokument, zur Verfügung.
 
 #### 1.3 Definitionen, Akronyme und Abkürzungen
-> Definitionen aller Begriffe, Akronyme und Abkürzungen, die für die ordnungsgemäße Interpretation dieses Dokuments erforderlich sind.
+> ##### Event
+> 	Eine Veranstaltung oder ein Treffen jeglicher Art
+> 	Beispiele: Konzert; Mittagessen; Daily (im SCRUM Kontext)
+> ##### Host
+> 	Der Veranstalter eines Events
+> 	Beispiele: Der Hausbesitzer; Der Organisator eines Konzertes
+> ##### Organizer
+> 	Ein Teilnehmer eines Events, welcher vom Host administrativen Zugriff auf das Event erhalten hat
 
 #### 1.4 Referenzen
 > Eine vollständige Liste aller referenzierten Dokumente. Jedes Dokument sollte anhand von Titel, Datum und Veröffentlichungsorganisation identifiziert werden. Sie können auch Hyperlinks einfügen, um die Referenzen bequem zu öffnen.
@@ -41,46 +49,99 @@ Ein Benutzer kann eine Gruppe erstellen. Zu dieser Gruppe kann er beliebig viele
 > Sie können Links zu Ihren UML-Diagrammen und User Stories oder die Bezeichnungen der User Stories in dieses Dokument einfügen.
 
 #### 2.1 Übersicht
-> Eine kurze Beschreibung der Funktionalität Ihrer Anwendung.
-> Fügen Sie ein oder mehrere **UML-Anwendungsfalldiagramme** und die erforderliche Beschreibung hinzu, um die wichtigsten Anwendungsfälle Ihrer Anwendung wiederzugeben.
-Das Programm ermöglicht Nutzern das Planen und Wahrnehmen von Events. Zur besseren Veranschaulichung wurden von den wichtigsten Seiten Mockups und Diagramme erstellt die im verlinkten Gitrepository zu finden sind:https://github.com/Impolex/event_planer/tree/main/documentation
+>	LetsEvent besitzt ein Eventmanagement, welches dazu dient neue Events anzulegen und bestehende Events zu bearbeiten oder zu löschen. Jedes Event erhält einen eigenen Chatroom in welchen sich die Teilnehmer zum Event austauschen können. 
+>
+>Eventmanagement: https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/Eventmanagement_UML.png
+>
+>Chat: https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/Chat_UML.png
+>
+>	Es wird auch ein Accountmanagement benötigt, um Benutzer Events zuweisen zu können. Ein Account beinhaltet individuelle Einstellungen, persönliche Informationen, Einladungen und weitere Benachrichtigungen und Events welchen der Account zugewiesen wurde.
+>
+>Accountmanagement: https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/Account_UML.png
+>
+>	Es ist ein Gruppen System vorgesehen, welches Nutzern ermöglicht Gruppen zugewiesen zu werden, um zeitsparend zu Events eingeladen werden zu können.
+>
+>Gruppen System: https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/UseCaseGroup.png
+>
+>	Die Anwendung soll einen Kalender besitzen, welcher den aktuellen Tag, sowie anstehende Events anzeigt, was sich natürlich bei jedem Benutzer unterscheidet.
+>
+>Kalender: https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/UseCaseCalendar.png
 
-#### 2.2 Name von Feature 1 / Anwendungsfall 1 Events erstellen
-> Spezifizieren Sie diese Funktion/diesen Anwendungsfall durch:
-> - Relevante **User Stories**https://letsevent.atlassian.net/browse/SCRUM-13
-> - **UI-Mockups** https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(operator_view).drawio.png
-> - **UML-Verhaltensdiagramme** und notwendige Textspezifikation
-> - **Voraussetzungen**. *Eine Voraussetzung für einen Anwendungsfall ist der Zustand des Systems, der vorliegen muss, bevor ein Anwendungsfall ausgeführt wird.*
-> - **Nachbedingungen**. *Eine Nachbedingung eines Anwendungsfalls ist eine Liste möglicher Zustände, in denen sich das System unmittelbar nach Abschluss eines Anwendungsfalls befinden kann.*
-> - **Geschätzter Aufwand (hoch, mittel, niedrig)** Niedrig
+#### 2.2 Eventmanagement
+> ##### **User Stories**
+> 	- Als Benutzer möchte ich Events erstellen können und andere Benutzer zu diesen einladen können, um die Koordination leicht zu machen.
+> 	- Als Benutzer möchte ich die Möglichkeit haben, bei Events wo ich von anderen Benutzern eingeladen wurde, mithilfe von Buttons mit einem Knopfdruck zu, oder abzusagen, um die Bedienung zu vereinfachen.
+> 	- Als Benutzer möchte ich bei Events die ich hoste eine Übersicht über die Zu- und Absagen in Form einer Liste haben. Dabei will ich nach mehreren Kriterien filtern können.
+> 	- Als Organisator will ich Aufgaben an andere Benutzer zuweisen können, um die Planung des Events zu vereinfachen
+> ##### **UI-Mockups**
+> - Event Übersicht (Eingeladen Ansicht): https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(invited_view).drawio.png
+> - Event Übersicht (Host Ansicht): https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(operator_view).drawio.png
+> - Event Übersicht (Teilnehmer Ansicht): https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(participator_view).drawio.png
+> - Event Liste: https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Eventspage.drawio.png
+> ##### **UML-Verhaltensdiagramme** und notwendige Textspezifikation
+> https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/Eventmanagement_UML.png
+> 	Ein Benutzer ist in der Lage ein Event einzurichten und Metainformationen, wie den Ort und den Zeitpunkt dieses Events, festzulegen. Der Benutzer welcher ein Event erstellt ist der Host dieses Events.
+> 	Der Host ist auch in der Lage andere Benutzer zu diesem Event einzuladen, wobei es den Eingeladenen überlassen ist ob sie die Einladung annehmen. Das sind die Teilnehmer eines Events. 
+> 	Ein Teilnehmer kann vom Host zu einem Organizer privilegiert werden. Organizer können Metadaten des Events bearbeiten und weitere Benutzer einladen. Sie können jedoch, im Gegensatz zum Host, nicht das Event abbrechen oder andere Nutzer privilegieren.
+> ##### **Voraussetzungen**
+> 	- Das System muss eine Datenbank besitzen um die Events abspeichern zu können
+> 	- Das System muss ein Usermanagement besitzen
+> 	- Der Host, die Organizer und Teilnehmer müssen einen Account besitzen
+> ##### **Nachbedingungen**
+> 	- In der Datenbank existiert ein neuer Eintrag, ein Eintrag wurde verändert oder es wurde ein Eintrag gelöscht
+> 	- Ein Benutzer kann Teil eines neuen Events sein, oder aus einem Event entfernt worden sein
+> ##### **Geschätzter Aufwand: hoch**
 
-#### 2.4 Name von Feature 2 / Anwendungsfall 2 Events beitreten
-... ...
-> Spezifizieren Sie diese Funktion/diesen Anwendungsfall durch:
-> - Relevante **User Stories**https://letsevent.atlassian.net/browse/SCRUM-13
-> - **UI-Mockups** https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(operator_view).drawio.png
-> - **UML-Verhaltensdiagramme** und notwendige Textspezifikation
-> - **Voraussetzungen**. *Eine Voraussetzung für einen Anwendungsfall ist der Zustand des Systems, der vorliegen muss, bevor ein Anwendungsfall ausgeführt wird.*
-> - **Nachbedingungen**. *Eine Nachbedingung eines Anwendungsfalls ist eine Liste möglicher Zustände, in denen sich das System unmittelbar nach Abschluss eines Anwendungsfalls befinden kann.*
-> - **Geschätzter Aufwand (hoch, mittel, niedrig)** Niedrig
+#### 2.3 Accountmanagement
+> ##### **User Stories**
+> 	- Als Benutzer möchte ich einen Account erstellen können um Geräteunabhängig arbeiten zu können.
+> 	- Als Benutzer möchte ich ein übersichtliches User-Interface haben, um schnell zu wissen was ich drücken muss um etwas bestimmtes zu tun.
+> ##### **UI-Mockups**
+> - Startseite: https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Frontpage.drawio.png
+> - Benachrichtigungen: https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Notifications.drawio.png
+> ##### **UML-Verhaltensdiagramme** und notwendige Textspezifikation
+> https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/Account_UML.png
+> 	Ein Benutzer ist in der Lage sich einen Account anzulegen, sowie auch seinen bestehenden Account zu löschen.
+> 	Der Benutzer kann seinen Account mit mehreren Einstellungen personalisieren
+> 	Der Account kann mehreren Events hinzugefügt werden und aus Events entfernt werden oder austreten.
+> ##### **Voraussetzungen**
+> 	- Das System muss eine Datenbank besitzen um die Accounts und ihre Einstellungen abspeichern zu können
+> 	- Das System muss ein Usermanagement besitzen
+> ##### **Nachbedingungen**
+> 	- In der Datenbank existiert ein neuer Eintrag, ein Eintrag wurde verändert oder es wurde ein Eintrag gelöscht
+> ##### **Geschätzter Aufwand: hoch**
 
-#### 2.5 Name von Feature 2 / Anwendungsfall 2 Kalenderansicht
-> Spezifizieren Sie diese Funktion/diesen Anwendungsfall durch:
-> - Relevante **User Stories**https://letsevent.atlassian.net/browse/SCRUM-13
-> - **UI-Mockups** https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(operator_view).drawio.png
-> - **UML-Verhaltensdiagramme** und notwendige Textspezifikation
-> - **Voraussetzungen**. *Eine Voraussetzung für einen Anwendungsfall ist der Zustand des Systems, der vorliegen muss, bevor ein Anwendungsfall ausgeführt wird.*
-> - **Nachbedingungen**. *Eine Nachbedingung eines Anwendungsfalls ist eine Liste möglicher Zustände, in denen sich das System unmittelbar nach Abschluss eines Anwendungsfalls befinden kann.*
-> - **Geschätzter Aufwand (hoch, mittel, niedrig)** Niedrig
+#### 2.4 Kalenderansicht
+> ##### **User Stories**
+> 	- Als Benutzer möchte ich einen Kalender in der Anwendung haben, um die Planung von Events zu erleichtern
+> ##### **UI-Mockups**
+> - Startseite: https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Frontpage.drawio.png
+> ##### **UML-Verhaltensdiagramme** und notwendige Textspezifikation
+> https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/UseCaseCalendar.png
+> 	Ein Benutzer ist in der Lage seine anstehenden Events mit Hilfe eines Kalenders einzusehen
+> 	Über den Kalendereintrag kann ein Benutzer per Mausklick zu der Übersicht des Jeweiligen Events
+> ##### **Voraussetzungen**
+> 	- Das System muss eine Datenbank besitzen um Events abspeichern zu können
+> 	- Das System muss ein Usermanagement besitzen
+> ##### **Nachbedingungen**
+> 	Keine relevanten Nachbedingungen
+> ##### **Geschätzter Aufwand: mittel**
 
-#### 2.6 Name von Feature 2 / Anwendungsfall 2 Gruppen 
-> Spezifizieren Sie diese Funktion/diesen Anwendungsfall durch:
-> - Relevante **User Stories**https://letsevent.atlassian.net/browse/SCRUM-13
-> - **UI-Mockups** https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Event(operator_view).drawio.png
-> - **UML-Verhaltensdiagramme** und notwendige Textspezifikation
-> - **Voraussetzungen**. *Eine Voraussetzung für einen Anwendungsfall ist der Zustand des Systems, der vorliegen muss, bevor ein Anwendungsfall ausgeführt wird.*
-> - **Nachbedingungen**. *Eine Nachbedingung eines Anwendungsfalls ist eine Liste möglicher Zustände, in denen sich das System unmittelbar nach Abschluss eines Anwendungsfalls befinden kann.*
-> - **Geschätzter Aufwand (hoch, mittel, niedrig)** Niedrig
+#### 2.5 Gruppen 
+> ##### **User Stories**
+> 	- Als Benutzer möchte ich Gruppen erstellen können, um bestimmte Gruppen auf Knopfdruck einladen zu können
+> ##### **UI-Mockups**
+> - Gruppenliste: https://github.com/Impolex/event_planer/blob/main/documentation/mockups/Groupspage.drawio.png
+> ##### **UML-Verhaltensdiagramme** und notwendige Textspezifikation
+> https://github.com/Impolex/event_planer/blob/main/documentation/diagrams/UseCase/UseCaseGroup.png
+> 	Ein Benutzer ist in der Lage seine eine Gruppe zu gründen, beitreten, verlassen, andere Nutzer zu einer einladen oder zu einer eingeladen zu werden
+> 	Alle Mitglieder einer Gruppe können auf Knopfdruck zu einem Event eingeladen werden
+> ##### **Voraussetzungen**
+> 	- Das System muss ein Usermanagement besitzen
+> 	- Das System muss eine Datenbank besitzen um Gruppen abspeichern zu können
+> ##### **Nachbedingungen**
+> 	- In der Datenbank existiert ein neuer Eintrag, ein Eintrag wurde verändert oder es wurde ein Eintrag gelöscht
+> ##### **Geschätzter Aufwand: niedrig**
 
 ### 3. Nichtfunktionale Anforderungen
 
