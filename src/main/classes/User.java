@@ -10,6 +10,7 @@ public class User {
     private List<Event> events;
     private List<Group> groups;
     private Map<String, String> settings;
+    private Notification notifications;
 
     //Constructor
     public User(){
