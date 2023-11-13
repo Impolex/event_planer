@@ -1,5 +1,6 @@
 package src.main.classes;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Event {
     private String description;
     private String date;
     private String place;
+
 
     //Constructor
     public Event(User host){
