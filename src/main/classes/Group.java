@@ -7,6 +7,7 @@ public class Group {
     private List<User> members;
     private List<User> admins;
     private User owner;
+    private String name;
 
     //Constructor
     public Group(){
