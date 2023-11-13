@@ -146,6 +146,11 @@ public class EventHostView implements UI, ActionListener {
         buttonPanel.add(editPlaceButton);
         buttonPanel.add(editDateButton);
         buttonPanel.add(cancelEventButton);
+        buttonPanel.add(addParticipatorButton);
+        buttonPanel.add(removeParticipatorButton);
+        buttonPanel.add(elevateParticipatorButton);
+        buttonPanel.add(demoteOrganiserButton);
+        buttonPanel.add(makeHostButton);
 
 
 
