@@ -1,32 +1,44 @@
 package src.main.classes;
 
 
+import src.main.interfaces.UI;
+import src.main.ui.EventHostView;
+import src.main.ui.EventParticipatorView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
     //Attributes
     private User host;
-    private List<User> organisators;
-    private List<User> participants = new ArrayList<>();
+    private List<User> organisators = new ArrayList<User>();
+    private List<User> participants = new ArrayList<User>();
     private Chat chat;
     private String title;
     private String description;
     private String date;
     private String place;
-
+    private ArrayList<UI> UIs = new ArrayList<UI>();
 
     //Constructor
-    public Event(User host){
+    public Event(User host, String title, String description, String place, String date){
+        this.title = title;
+        this.description = description;
+        this.place = place;
+        this.date = date;
         chat = new Chat();
         this.participants.add(host);
+        this.organisators.add(host);
         this.host = host;
+        EventHostView hostView = new EventHostView("Host View", this, host);
+        UIs.add(hostView);
     }
 
     //Methods
     public User getHost() {
         return host;
     }
+
 
     public List<User> getOrganisators() {
         return organisators;
@@ -50,6 +62,10 @@ public class Event {
 
     public String getPlace() {
         return place;
+    }
+
+    public List<UI> getUIs(){
+        return UIs;
     }
 
     //Participant methods
@@ -76,6 +92,25 @@ public class Event {
         this.place = place;
     }
 
+    /**
+     * Adds the specified user to the participants list, opens a participator view UI and adds the UI to the UIs list.
+     * @param user
+     */
+    public void addParticipator(User user){
+        participants.add(user);
+        EventParticipatorView participatorView1 = new EventParticipatorView("Participator View",this, user);
+        UIs.add(participatorView1);
+    }
+
+    /**
+     * Closes the UI of the specified user, removes the UI from the UIs list and removes the user from the participants list.
+     * @param user
+     */
+    public void removeParticipator(User user) {
+        UIs.get(participants.indexOf(user)).closeUI();
+        UIs.remove(participants.indexOf(user));
+        participants.remove(user);
+    }
     //Host methods
     /**
      * Gives the host status to another user, removing this status from the current host.
@@ -94,4 +129,6 @@ public class Event {
             host = newHost;
         }
     }
+
+
 }

@@ -26,3 +26,4 @@ replay_pid*
 # misc.
 .obsidian*
 out*
+.idea/discord.xml

@@ -47,6 +47,9 @@ public class EventHostView implements UI, ActionListener {
     private JButton demoteOrganiserButton;
     private JButton makeHostButton;
 
+    //Demonstration
+    int userCount = 2;
+
     //Constructor
     public EventHostView(String windowTitle, Event event, User user){
         this.user = user;
@@ -57,10 +60,27 @@ public class EventHostView implements UI, ActionListener {
 
     //Methods
 
-    /**
-     * Reads the image to be displayed on the top of the UI and sets it as a local variable
-     */
-    private void setImage(){
+    public void repaintTitleLabel(){
+        titleLabel.setText("Title: "+event.getTitle());
+        this.titleLabel.repaint();
+    }
+
+    public void repaintDescriptionLabel(){
+        descriptionLabel.setText("Description: "+event.getDescription());
+        this.descriptionLabel.repaint();
+    }
+
+    public void repaintDateLabel(){
+        this.dateLabel.setText("Date: "+event.getDate());
+        this.dateLabel.repaint();
+    }
+
+    public void repaintPlaceLabel(){
+        this.placeLabel.setText("Place: "+event.getPlace());
+        this.placeLabel.repaint();
+    }
+
+    public void setImage(){
         try {
             myPicture = ImageIO.read(new File("documentation/logo/letsevent_transparent.png"));
             picLabel = new JLabel(new ImageIcon(myPicture));
@@ -71,20 +91,35 @@ public class EventHostView implements UI, ActionListener {
         }
     }
 
+    /**
+     * Opens a new window showing a list of buttons. Each button represents a participator of the event.
+     * On click, the method returns the selected participator
+     * @return
+     */
     private User selectParticipatorUI(){
-        List<JButton> participants = new ArrayList<>();
+        //Getting all users and saving the usernames in a list
+        List<String> participants = new ArrayList<String>();
         for (User user:event.getParticipants()){
-            participants.add(new JButton(user.getUserName()));
+            participants.add(user.getUserName());
         }
 
-        return null;
+        //A custom option pane which displays a button for each user.
+        //On click the option pane disappears and returns an integer which corresponds to the selected user
+        int option = JOptionPane.showOptionDialog(null, "Select user",
+                ("Participants of \""+event.getTitle()+"\""), JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, participants.toArray(), participants.toArray()[0]);
+        return event.getParticipants().get(option);
+    }
+
+    public void closeUI(){
+        frame.dispose();
     }
 
     @Override
     public void initUI(String windowTitle) {
         //Frame
         frame = new JFrame(windowTitle);
-        frame.setSize(1200, 800);
+        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(picLabel, BorderLayout.NORTH);
@@ -140,6 +175,8 @@ public class EventHostView implements UI, ActionListener {
         editPlaceButton.addActionListener(this);
         editDateButton.addActionListener(this);
         cancelEventButton.addActionListener(this);
+        addParticipatorButton.addActionListener(this);
+        removeParticipatorButton.addActionListener(this);
 
         buttonPanel.add(editTitleButton);
         buttonPanel.add(editDescriptionButton);
@@ -148,9 +185,9 @@ public class EventHostView implements UI, ActionListener {
         buttonPanel.add(cancelEventButton);
         buttonPanel.add(addParticipatorButton);
         buttonPanel.add(removeParticipatorButton);
-        buttonPanel.add(elevateParticipatorButton);
-        buttonPanel.add(demoteOrganiserButton);
-        buttonPanel.add(makeHostButton);
+        //buttonPanel.add(elevateParticipatorButton);
+        //buttonPanel.add(demoteOrganiserButton);
+        //buttonPanel.add(makeHostButton);
 
 
 
@@ -173,18 +210,59 @@ public class EventHostView implements UI, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==editTitleButton){
-
+            event.setTitle(JOptionPane.showInputDialog("Insert the new event title"));
+            for(UI ui:event.getUIs()){
+                ui.repaintTitleLabel();
+            }
         }
         else if(e.getSource()==editDescriptionButton){
-
+            event.setDescription(JOptionPane.showInputDialog("Insert the new event description"));
+            for(UI ui:event.getUIs()){
+                ui.repaintDescriptionLabel();
+            }
         }
         else if(e.getSource()==editPlaceButton){
-
+            event.setPlace(JOptionPane.showInputDialog("Insert the new event place"));
+            for(UI ui:event.getUIs()){
+                ui.repaintPlaceLabel();
+            }
         }
         else if(e.getSource()==editDateButton){
-
+            event.setDate(JOptionPane.showInputDialog("Insert the new event date"));
+            for(UI ui:event.getUIs()){
+                ui.repaintDateLabel();
+            }
         }
         else if(e.getSource()==cancelEventButton){
+            System.exit(0);
+
+        }
+        else if (e.getSource()==addParticipatorButton) {
+            User user = new User();
+            user.setUserId(userCount);
+            user.setUserName("user"+userCount);
+            event.addParticipator(user);
+            userCount++;
+        }
+        else if (e.getSource()==removeParticipatorButton) {
+            //Uses the Value returned from the option pane to get the specified user from the event.
+            //Unless the user ist the host, the selected user is removed.
+            User selUser = selectParticipatorUI();
+            if (selUser == event.getHost()){
+                JOptionPane.showMessageDialog(null, "The host cannot be removed from the event",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                event.removeParticipator(selUser);
+            }
+        }
+        else if (e.getSource()==elevateParticipatorButton) {
+
+        }
+        else if (e.getSource()==demoteOrganiserButton){
+
+        }
+        else if (e.getSource()==makeHostButton) {
 
         }
     }
