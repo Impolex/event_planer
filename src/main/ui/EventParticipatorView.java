@@ -46,10 +46,28 @@ public class EventParticipatorView implements UI, ActionListener {
 
     //Methods
 
-    /**
-     * Reads the image to be displayed on the top of the UI and sets it as a local variable
-     */
-    private void setImage(){
+    public void repaintTitleLabel(){
+        titleLabel.setText("Title: "+event.getTitle());
+        this.titleLabel.repaint();
+    }
+
+    public void repaintDescriptionLabel(){
+        descriptionLabel.setText("Description: "+event.getDescription());
+        this.descriptionLabel.repaint();
+    }
+
+    public void repaintDateLabel(){
+        this.dateLabel.setText("Date: "+event.getDate());
+        this.dateLabel.repaint();
+    }
+
+    public void repaintPlaceLabel(){
+        this.placeLabel.setText("Place: "+event.getPlace());
+        this.placeLabel.repaint();
+    }
+
+
+    public void setImage(){
         try {
             myPicture = ImageIO.read(new File("documentation/logo/letsevent_transparent.png"));
             picLabel = new JLabel(new ImageIcon(myPicture));
@@ -60,11 +78,15 @@ public class EventParticipatorView implements UI, ActionListener {
         }
     }
 
+    public void closeUI(){
+        frame.dispose();
+    }
+
     @Override
     public void initUI(String windowTitle) {
         //Frame
         frame = new JFrame(windowTitle);
-        frame.setSize(1200, 800);
+        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(picLabel, BorderLayout.NORTH);
@@ -127,8 +149,7 @@ public class EventParticipatorView implements UI, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==leaveEventButton){
-            frame.dispose();
-            event.remParticipants(user);
+            event.removeParticipator(user);
         }
     }
 }
