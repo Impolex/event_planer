@@ -127,7 +127,8 @@ public class EventParticipatorView implements UI, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==leaveEventButton){
-
+            frame.dispose();
+            event.remParticipants(user);
         }
     }
 }

@@ -3,6 +3,9 @@ package src.main.ui;
 import src.main.classes.User;
 import src.main.interfaces.UI;
 import src.main.classes.Event;
+import src.main.classes.Event;
+import src.main.ui.EventHostView;
+import src.main.ui.EventParticipatorView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -140,6 +143,7 @@ public class EventHostView implements UI, ActionListener {
         editPlaceButton.addActionListener(this);
         editDateButton.addActionListener(this);
         cancelEventButton.addActionListener(this);
+        addParticipatorButton.addActionListener(this);
 
         buttonPanel.add(editTitleButton);
         buttonPanel.add(editDescriptionButton);
@@ -185,6 +189,17 @@ public class EventHostView implements UI, ActionListener {
 
         }
         else if(e.getSource()==cancelEventButton){
+
+            frame.dispose();
+        } else if (e.getSource()==addParticipatorButton) {
+            event.addParticipator();
+        } else if (e.getSource()==removeParticipatorButton) {
+            event.removeParticipator();
+        } else if (e.getSource()==elevateParticipatorButton) {
+
+        }else if (e.getSource()==demoteOrganiserButton){
+
+        } else if (e.getSource()==makeHostButton) {
 
         }
     }
