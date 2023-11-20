@@ -1,6 +1,7 @@
 package src.main.classes;
 
 
+import src.main.interfaces.EventViewUI;
 import src.main.interfaces.UI;
 import src.main.ui.EventHostView;
 import src.main.ui.EventParticipatorView;
@@ -18,10 +19,11 @@ public class Event {
     private String description;
     private String date;
     private String place;
-    private ArrayList<UI> UIs = new ArrayList<UI>();
+    private ArrayList<EventViewUI> UIs = new ArrayList<EventViewUI>();
 
     //Constructor
     public Event(User host, String title, String description, String place, String date){
+        this.chat = new Chat();
         this.title = title;
         this.description = description;
         this.place = place;
@@ -64,7 +66,7 @@ public class Event {
         return place;
     }
 
-    public List<UI> getUIs(){
+    public List<EventViewUI> getUIs(){
         return UIs;
     }
 

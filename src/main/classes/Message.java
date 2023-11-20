@@ -6,8 +6,9 @@ public class Message {
     private String messageText;
 
     //Constructor
-    public Message(){
-
+    public Message(User sender, String messageText){
+        this.sender = sender;
+        this.messageText = messageText;
     }
 
     //Methods

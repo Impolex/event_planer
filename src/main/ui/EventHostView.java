@@ -1,6 +1,7 @@
 package src.main.ui;
 
 import src.main.classes.User;
+import src.main.interfaces.EventViewUI;
 import src.main.interfaces.UI;
 import src.main.classes.Event;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventHostView implements UI, ActionListener {
+public class EventHostView implements EventViewUI, ActionListener {
     //Attributes
     private User user;
     private Event event;
@@ -46,6 +47,7 @@ public class EventHostView implements UI, ActionListener {
     private JButton elevateParticipatorButton;
     private JButton demoteOrganiserButton;
     private JButton makeHostButton;
+    private JButton openChatButton;
 
     //Demonstration
     int userCount = 2;
@@ -60,24 +62,40 @@ public class EventHostView implements UI, ActionListener {
 
     //Methods
 
+    /**
+     * Reads the event title, sets it as the labels new text and repaints the label
+     */
     public void repaintTitleLabel(){
         titleLabel.setText("Title: "+event.getTitle());
         this.titleLabel.repaint();
     }
 
+    /**
+     * Reads the event description, sets it as the labels new text and repaints the label
+     */
     public void repaintDescriptionLabel(){
         descriptionLabel.setText("Description: "+event.getDescription());
         this.descriptionLabel.repaint();
     }
 
+    /**
+     * Reads the event date, sets it as the labels new text and repaints the label
+     */
     public void repaintDateLabel(){
         this.dateLabel.setText("Date: "+event.getDate());
         this.dateLabel.repaint();
     }
 
+    /**
+     * Reads the event place, sets it as the labels new text and repaints the label
+     */
     public void repaintPlaceLabel(){
         this.placeLabel.setText("Place: "+event.getPlace());
         this.placeLabel.repaint();
+    }
+
+    public void openChat() {
+        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user);
     }
 
     public void setImage(){
@@ -114,6 +132,7 @@ public class EventHostView implements UI, ActionListener {
     public void closeUI(){
         frame.dispose();
     }
+
 
     @Override
     public void initUI(String windowTitle) {
@@ -169,6 +188,7 @@ public class EventHostView implements UI, ActionListener {
         elevateParticipatorButton = new JButton("Elevate participator");
         demoteOrganiserButton = new JButton("Demote organiser");
         makeHostButton = new JButton("Change host");
+        openChatButton = new JButton("Open chat");
 
         editTitleButton.addActionListener(this);
         editDescriptionButton.addActionListener(this);
@@ -177,6 +197,10 @@ public class EventHostView implements UI, ActionListener {
         cancelEventButton.addActionListener(this);
         addParticipatorButton.addActionListener(this);
         removeParticipatorButton.addActionListener(this);
+        //elevateParticipatorButton.addActionListener(this);
+        //demoteOrganiserButton.addActionListener(this);
+        //makeHostButton.addActionListener(this);
+        openChatButton.addActionListener(this);
 
         buttonPanel.add(editTitleButton);
         buttonPanel.add(editDescriptionButton);
@@ -188,6 +212,7 @@ public class EventHostView implements UI, ActionListener {
         //buttonPanel.add(elevateParticipatorButton);
         //buttonPanel.add(demoteOrganiserButton);
         //buttonPanel.add(makeHostButton);
+        buttonPanel.add(openChatButton);
 
 
 
@@ -210,26 +235,38 @@ public class EventHostView implements UI, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==editTitleButton){
-            event.setTitle(JOptionPane.showInputDialog("Insert the new event title"));
-            for(UI ui:event.getUIs()){
+            String title = JOptionPane.showInputDialog("Insert the new event title");
+            if(!title.isEmpty()){
+                event.setTitle(title);
+            }
+            for(EventViewUI ui:event.getUIs()){
                 ui.repaintTitleLabel();
             }
         }
         else if(e.getSource()==editDescriptionButton){
-            event.setDescription(JOptionPane.showInputDialog("Insert the new event description"));
-            for(UI ui:event.getUIs()){
+            String description = JOptionPane.showInputDialog("Insert the new event description");
+            if(!description.isEmpty()){
+                event.setDescription(description);
+            }
+            for(EventViewUI ui:event.getUIs()){
                 ui.repaintDescriptionLabel();
             }
         }
         else if(e.getSource()==editPlaceButton){
-            event.setPlace(JOptionPane.showInputDialog("Insert the new event place"));
-            for(UI ui:event.getUIs()){
+            String place = JOptionPane.showInputDialog("Insert the new event place");
+            if(!place.isEmpty()){
+                event.setPlace(place);
+            }
+            for(EventViewUI ui:event.getUIs()){
                 ui.repaintPlaceLabel();
             }
         }
         else if(e.getSource()==editDateButton){
-            event.setDate(JOptionPane.showInputDialog("Insert the new event date"));
-            for(UI ui:event.getUIs()){
+            String date = JOptionPane.showInputDialog("Insert the new event date");
+            if(!date.isEmpty()){
+                event.setDate(date);
+            }
+            for(EventViewUI ui:event.getUIs()){
                 ui.repaintDateLabel();
             }
         }
@@ -246,7 +283,7 @@ public class EventHostView implements UI, ActionListener {
         }
         else if (e.getSource()==removeParticipatorButton) {
             //Uses the Value returned from the option pane to get the specified user from the event.
-            //Unless the user ist the host, the selected user is removed.
+            //Unless the user is the host, the selected user is removed.
             User selUser = selectParticipatorUI();
             if (selUser == event.getHost()){
                 JOptionPane.showMessageDialog(null, "The host cannot be removed from the event",
@@ -264,6 +301,9 @@ public class EventHostView implements UI, ActionListener {
         }
         else if (e.getSource()==makeHostButton) {
 
+        }
+        else if (e.getSource()==openChatButton){
+            openChat();
         }
     }
 }
