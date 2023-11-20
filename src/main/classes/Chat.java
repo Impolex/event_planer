@@ -12,5 +12,7 @@ public class Chat {
     }
 
     //Methods
-
+    public void sendMessage(User user, String messageText){
+        messages.add(new Message(user, messageText));
+    }
 }

@@ -1,6 +1,7 @@
 package src.main.ui;
 
 import src.main.classes.User;
+import src.main.interfaces.EventViewUI;
 import src.main.interfaces.UI;
 import src.main.classes.Event;
 
@@ -13,7 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class EventParticipatorView implements UI, ActionListener {
+public class EventParticipatorView implements EventViewUI, ActionListener {
     //Attributes
     private User user;
     private Event event;
@@ -46,26 +47,41 @@ public class EventParticipatorView implements UI, ActionListener {
 
     //Methods
 
+    /**
+     * Reads the event title, sets it as the labels new text and repaints the label
+     */
     public void repaintTitleLabel(){
         titleLabel.setText("Title: "+event.getTitle());
         this.titleLabel.repaint();
     }
 
+    /**
+     * Reads the event description, sets it as the labels new text and repaints the label
+     */
     public void repaintDescriptionLabel(){
         descriptionLabel.setText("Description: "+event.getDescription());
         this.descriptionLabel.repaint();
     }
 
+    /**
+     * Reads the event date, sets it as the labels new text and repaints the label
+     */
     public void repaintDateLabel(){
         this.dateLabel.setText("Date: "+event.getDate());
         this.dateLabel.repaint();
     }
 
+    /**
+     * Reads the event place, sets it as the labels new text and repaints the label
+     */
     public void repaintPlaceLabel(){
         this.placeLabel.setText("Place: "+event.getPlace());
         this.placeLabel.repaint();
     }
 
+    public void openChat() {
+        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user);
+    }
 
     public void setImage(){
         try {
