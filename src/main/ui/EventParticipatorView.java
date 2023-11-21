@@ -36,6 +36,7 @@ public class EventParticipatorView implements EventViewUI, ActionListener {
     private JLabel placeLabel;
     private JLabel hostLabel;
     private JButton leaveEventButton;
+    private JButton openChatButton;
 
     //Constructor
     public EventParticipatorView(String windowTitle, Event event, User user){
@@ -80,7 +81,7 @@ public class EventParticipatorView implements EventViewUI, ActionListener {
     }
 
     public void openChat() {
-        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user);
+        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user, event.getChat());
     }
 
     public void setImage(){
@@ -144,7 +145,10 @@ public class EventParticipatorView implements EventViewUI, ActionListener {
         //Event Actionbuttons
         leaveEventButton = new JButton("Leave event");
         leaveEventButton.addActionListener(this);
+        openChatButton = new JButton("Open chat");
+        openChatButton.addActionListener(this);
         buttonPanel.add(leaveEventButton);
+        buttonPanel.add(openChatButton);
 
         //Center panel
         centerPanel = new JPanel(new GridLayout(6, 1));
@@ -166,6 +170,9 @@ public class EventParticipatorView implements EventViewUI, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==leaveEventButton){
             event.removeParticipator(user);
+        }
+        else if(e.getSource()==openChatButton){
+            openChat();
         }
     }
 }

@@ -13,4 +13,8 @@ public class Message {
 
     //Methods
 
+    @Override
+    public String toString() {
+        return sender.getUserName()+": "+messageText+System.lineSeparator();
+    }
 }
