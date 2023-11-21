@@ -95,7 +95,7 @@ public class EventHostView implements EventViewUI, ActionListener {
     }
 
     public void openChat() {
-        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user);
+        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user, event.getChat());
     }
 
     public void setImage(){
