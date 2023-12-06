@@ -265,49 +265,23 @@ Remark: The main criterion for the choice of possible scenarios
 **not** important to describe a large number of scenarios. You should
 rather document a representative selection.
 
-::: formalpara-title
-**Motivation**
-:::
+## \<Runtime Signing up> {#__runtime_scenario_1}
 
-You should understand how (instances of) building blocks of your system
-perform their job and communicate at runtime. You will mainly capture
-scenarios in your documentation to communicate your architecture to
-stakeholders that are less willing or able to read and understand the
-static models (building block view, deployment view).
+![](images/createuser.png)
 
-::: formalpara-title
-**Form**
-:::
+- To create a user, the client sends a request to the server, which then creates the user by storing it to the database.
 
-There are many notations for describing scenarios, e.g.
+## \<Runtime Loging in> {#__runtime_scenario_2}
 
--   numbered list of steps (in natural language)
+![](images/login.png)
 
--   activity diagrams or flow charts
+- To login the client sends a request to the server. To server compares the credentials with the database. If successfull the servers provides an access token.
 
--   sequence diagrams
+## \<Runtime Creating an event> {#__runtime_scenario_n}
 
--   BPMN or EPCs (event process chains)
+![](images/createevent.png)
 
--   state machines
-
--   ...
-
-See [Runtime View](https://docs.arc42.org/section-6/) in the arc42
-documentation.
-
-## \<Runtime Scenario 1> {#__runtime_scenario_1}
-
--   *\<insert runtime diagram or textual description of the scenario>*
-
--   *\<insert description of the notable aspects of the interactions
-    between the building block instances depicted in this diagram.\>*
-
-## \<Runtime Scenario 2> {#__runtime_scenario_2}
-
-## ... {#_}
-
-## \<Runtime Scenario n> {#__runtime_scenario_n}
+- To create an event, the client sends a request to the server, which then creates the event by storing it to the database.
 
 # Deployment View {#section-deployment-view}
 
