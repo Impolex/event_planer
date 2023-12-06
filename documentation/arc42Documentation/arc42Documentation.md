@@ -28,155 +28,44 @@ We want to create an event planer, to allow users to create their own events and
 ## Stakeholders {#_stakeholders}
 
 
-+-------------+---------------------------+---------------------------+
 | Role/Name   | Contact                   | Expectations              |
-+=============+===========================+===========================+
-| *\<Product_owner>* | *\<Dawid>*            | *\<Usability>*        |
-+-------------+---------------------------+---------------------------+
-| *\<Developer>* | *\<Lukas>*            | *\<Security>*        |
-+-------------+---------------------------+---------------------------+
-| *\<Scrum_master>* | *\<Julian>*            | *\<Reliability>*        |
-+-------------+---------------------------+---------------------------+
+|-------------|---------------------------|-----------------------|
+| Product_owner | Dawid          | Usability        |
+| Developer| Lukas            | Security        |
+| Scrum_master | Julian            | Reliability        |
 
 # Constraints {#section-constraints}
 
-
-
 ## Technical-Constraints {#section-technical-constraints}
-We work with Java and for our Databank we use MariaDB.
-We want a Model-View-Controller pattern and code has to be reusable.
+We work with Java and use MariaDB as our database.
 
 # Architecture Constraints {#section-architecture-constraints}
 
-::: formalpara-title
-**Contents**
-:::
-
-Any requirement that constraints software architects in their freedom of
-design and implementation decisions or decision about the development
-process. These constraints sometimes go beyond individual systems and
-are valid for whole organizations and companies.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Architects should know exactly where they are free in their design
-decisions and where they must adhere to constraints. Constraints must
-always be dealt with; they may be negotiable, though.
-
-::: formalpara-title
-**Form**
-:::
-
-Simple tables of constraints with explanations. If needed you can
-subdivide them into technical constraints, organizational and political
-constraints and conventions (e.g. programming or versioning guidelines,
-documentation or naming conventions)
-
-See [Architecture Constraints](https://docs.arc42.org/section-2/) in the
-arc42 documentation.
+* Classes are not to be forced to implement methods, which will not be used by this class
 
 # System Scope and Context {#section-system-scope-and-context}
 
-::: formalpara-title
-**Contents**
-:::
+![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
-System scope and context - as the name suggests - delimits your system
-(i.e. your scope) from all its communication partners (neighboring
-systems and users, i.e. the context of your system). It thereby
-specifies the external interfaces.
+|Element|Description|
+|--------|----------|
+|Letsevent app|The client-side application|
+|database connector/server|The server which the users connect to when using the application. Manages requests from the users and responses from the database|
+|database|The database which holds any data the users create|
 
-If necessary, differentiate the business context (domain specific inputs
-and outputs) from the technical context (channels, protocols, hardware).
-
-::: formalpara-title
-**Motivation**
-:::
-
-The domain interfaces and technical interfaces to communication partners
-are among your system's most critical aspects. Make sure that you
-completely understand them.
-
-::: formalpara-title
-**Form**
-:::
-
-Various options:
-
--   Context diagrams
-
--   Lists of communication partners and their interfaces.
-
-See [Context and Scope](https://docs.arc42.org/section-3/) in the arc42
-documentation.
 
 ## Business Context {#_business_context}
 
-::: formalpara-title
-**Contents**
-:::
-
-Specification of **all** communication partners (users, IT-systems, ...)
-with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication
-protocols.
-
-::: formalpara-title
-**Motivation**
-:::
-
-All stakeholders should understand which data are exchanged with the
-environment of the system.
-
-::: formalpara-title
-**Form**
-:::
-
-All kinds of diagrams that show the system as a black box and specify
-the domain interfaces to communication partners.
-
-Alternatively (or additionally) you can use a table. The title of the
-table is the name of your system, the three columns contain the name of
-the communication partner, the inputs, and the outputs.
-
-**\<Diagram or Table>**
-
-**\<optionally: Explanation of external domain interfaces>**
+There are no communication partners, other than the communication between the application and server, and between the server and database, which are all part of the system.
 
 ## Technical Context {#_technical_context}
 
-::: formalpara-title
-**Contents**
-:::
+|Element|Description|
+|--------|----------|
+|Letsevent app|The client-side application|
+|database connector/server|The server which the users connect to when using the application. Manages requests from the users and responses from the database|
+|database|The database which holds any data the users create|
 
-Technical interfaces (channels and transmission media) linking your
-system to its environment. In addition a mapping of domain specific
-input/output to the channels, i.e. an explanation which I/O uses which
-channel.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Many stakeholders make architectural decision based on the technical
-interfaces between the system and its context. Especially infrastructure
-or hardware designers decide these technical interfaces.
-
-::: formalpara-title
-**Form**
-:::
-
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels
-and input/output.
-
-**\<Diagram or Table>**
-
-**\<optionally: Explanation of technical interfaces>**
-
-**\<Mapping Input/Output to Channels>**
 
 # Solution Strategy {#section-solution-strategy}
 
@@ -193,49 +82,7 @@ To guarantee the usability of our programm, we are planning on choosing random t
 The security of the user data will be ensured by a strong and safe encryption algorythm.
 # Building Block View {#section-building-block-view}
 
-::: formalpara-title
-**Content**
-:::
-
-The building block view shows the static decomposition of the system
-into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers,
-functions, macros, operations, data structures, ...) as well as their
-dependencies (relationships, associations, ...)
-
-This view is mandatory for every architecture documentation. In analogy
-to a house this is the *floor plan*.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Maintain an overview of your source code by making its structure
-understandable through abstraction.
-
-This allows you to communicate with your stakeholder on an abstract
-level without disclosing implementation details.
-
-::: formalpara-title
-**Form**
-:::
-
-The building block view is a hierarchical collection of black boxes and
-white boxes (see figure below) and their descriptions.
-
-![Hierarchy of building blocks](images/05_building_blocks-EN.png)
-
-**Level 1** is the white box description of the overall system together
-with black box descriptions of all contained building blocks.
-
-**Level 2** zooms into some building blocks of level 1. Thus it contains
-the white box description of selected building blocks of level 1,
-together with black box descriptions of their internal building blocks.
-
-**Level 3** zooms into selected building blocks of level 2, and so on.
-
-See [Building Block View](https://docs.arc42.org/section-5/) in the
-arc42 documentation.
+![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
 ## Whitebox Overall System {#_whitebox_overall_system}
 
@@ -678,7 +525,7 @@ The reason behind this is a clear seperation between the elements, which allows 
 
 ## Quality Scenarios {#_quality_scenarios}
 
--   Within 10 minutes, the user can complete the event creation process, after which, the event is saved in the database
+- Within 10 minutes, the user can complete the event creation process, after which, the event is saved in the database
 - When the user creates an account, a hash algorithm is applied to the credentials before saving in the database
 - After completing the software update, the development team can apply the update within 2 hours
 - Should the database become unavailable, a message will be displayed to the user and the admins will be notified. Unavailability must not be more than 5h per week
