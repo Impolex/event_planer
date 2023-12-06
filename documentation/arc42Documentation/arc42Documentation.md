@@ -17,345 +17,72 @@ concepts. For documentation of your own system you use better the
 *plain* version.
 :::
 
+# 
+
 # Introduction and Goals {#section-introduction-and-goals}
 
-Describes the relevant requirements and the driving forces that software
-architects and development team must consider. These include
-
--   underlying business goals,
-
--   essential features,
-
--   essential functional requirements,
-
--   quality goals for the architecture and
-
--   relevant stakeholders and their expectations
 
 ## Requirements Overview {#_requirements_overview}
-
-::: formalpara-title
-**Contents**
-:::
-
-Short description of the functional requirements, driving forces,
-extract (or abstract) of requirements. Link to (hopefully existing)
-requirements documents (with version number and information where to
-find it).
-
-::: formalpara-title
-**Motivation**
-:::
-
-From the point of view of the end users a system is created or modified
-to improve support of a business activity and/or improve the quality.
-
-::: formalpara-title
-**Form**
-:::
-
-Short textual description, probably in tabular use-case format. If
-requirements documents exist this overview should refer to these
-documents.
-
-Keep these excerpts as short as possible. Balance readability of this
-document with potential redundancy w.r.t to requirements documents.
-
-See [Introduction and Goals](https://docs.arc42.org/section-1/) in the
-arc42 documentation.
-
-## Quality Goals {#_quality_goals}
-
-::: formalpara-title
-**Contents**
-:::
-
-The top three (max five) quality goals for the architecture whose
-fulfillment is of highest importance to the major stakeholders. We
-really mean quality goals for the architecture. Don't confuse them with
-project goals. They are not necessarily identical.
-
-Consider this overview of potential topics (based upon the ISO 25010
-standard):
-
-![Categories of Quality
-Requirements](images/01_2_iso-25010-topics-EN.drawio.png)
-
-::: formalpara-title
-**Motivation**
-:::
-
-You should know the quality goals of your most important stakeholders,
-since they will influence fundamental architectural decisions. Make sure
-to be very concrete about these qualities, avoid buzzwords. If you as an
-architect do not know how the quality of your work will be judged...
-
-::: formalpara-title
-**Form**
-:::
-
-A table with quality goals and concrete scenarios, ordered by priorities
+We want to create an event planer, to allow users to create their own events and also to join others. Other features are an integrated calender, usergroups and chats. For detailed information visit our blog (https://letseventproject.wordpress.com/) or documentation(https://github.com/Impolex/event_planer/tree/main/documentation).
 
 ## Stakeholders {#_stakeholders}
 
-::: formalpara-title
-**Contents**
-:::
 
-Explicit overview of stakeholders of the system, i.e. all person, roles
-or organizations that
-
--   should know the architecture
-
--   have to be convinced of the architecture
-
--   have to work with the architecture or with code
-
--   need the documentation of the architecture for their work
-
--   have to come up with decisions about the system or its development
-
-::: formalpara-title
-**Motivation**
-:::
-
-You should know all parties involved in development of the system or
-affected by the system. Otherwise, you may get nasty surprises later in
-the development process. These stakeholders determine the extent and the
-level of detail of your work and its results.
-
-::: formalpara-title
-**Form**
-:::
-
-Table with role names, person names, and their expectations with respect
-to the architecture and its documentation.
-
-+-------------+---------------------------+---------------------------+
 | Role/Name   | Contact                   | Expectations              |
-+=============+===========================+===========================+
-| *\<Role-1>* | *\<Contact-1>*            | *\<Expectation-1>*        |
-+-------------+---------------------------+---------------------------+
-| *\<Role-2>* | *\<Contact-2>*            | *\<Expectation-2>*        |
-+-------------+---------------------------+---------------------------+
+|-------------|---------------------------|-----------------------|
+| Product_owner | Dawid          | Usability        |
+| Developer| Lukas            | Security        |
+| Scrum_master | Julian            | Reliability        |
+
+# Constraints {#section-constraints}
+
+## Technical-Constraints {#section-technical-constraints}
+We work with Java and use MariaDB as our database.
 
 # Architecture Constraints {#section-architecture-constraints}
 
-::: formalpara-title
-**Contents**
-:::
-
-Any requirement that constraints software architects in their freedom of
-design and implementation decisions or decision about the development
-process. These constraints sometimes go beyond individual systems and
-are valid for whole organizations and companies.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Architects should know exactly where they are free in their design
-decisions and where they must adhere to constraints. Constraints must
-always be dealt with; they may be negotiable, though.
-
-::: formalpara-title
-**Form**
-:::
-
-Simple tables of constraints with explanations. If needed you can
-subdivide them into technical constraints, organizational and political
-constraints and conventions (e.g. programming or versioning guidelines,
-documentation or naming conventions)
-
-See [Architecture Constraints](https://docs.arc42.org/section-2/) in the
-arc42 documentation.
+* Classes are not to be forced to implement methods, which will not be used by this class
 
 # System Scope and Context {#section-system-scope-and-context}
 
-::: formalpara-title
-**Contents**
-:::
+![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
-System scope and context - as the name suggests - delimits your system
-(i.e. your scope) from all its communication partners (neighboring
-systems and users, i.e. the context of your system). It thereby
-specifies the external interfaces.
+|Element|Description|
+|--------|----------|
+|Letsevent app|The client-side application|
+|database connector/server|The server which the users connect to when using the application. Manages requests from the users and responses from the database|
+|database|The database which holds any data the users create|
 
-If necessary, differentiate the business context (domain specific inputs
-and outputs) from the technical context (channels, protocols, hardware).
-
-::: formalpara-title
-**Motivation**
-:::
-
-The domain interfaces and technical interfaces to communication partners
-are among your system's most critical aspects. Make sure that you
-completely understand them.
-
-::: formalpara-title
-**Form**
-:::
-
-Various options:
-
--   Context diagrams
-
--   Lists of communication partners and their interfaces.
-
-See [Context and Scope](https://docs.arc42.org/section-3/) in the arc42
-documentation.
 
 ## Business Context {#_business_context}
 
-::: formalpara-title
-**Contents**
-:::
-
-Specification of **all** communication partners (users, IT-systems, ...)
-with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication
-protocols.
-
-::: formalpara-title
-**Motivation**
-:::
-
-All stakeholders should understand which data are exchanged with the
-environment of the system.
-
-::: formalpara-title
-**Form**
-:::
-
-All kinds of diagrams that show the system as a black box and specify
-the domain interfaces to communication partners.
-
-Alternatively (or additionally) you can use a table. The title of the
-table is the name of your system, the three columns contain the name of
-the communication partner, the inputs, and the outputs.
-
-**\<Diagram or Table>**
-
-**\<optionally: Explanation of external domain interfaces>**
+There are no communication partners, other than the communication between the application and server, and between the server and database, which are all part of the system.
 
 ## Technical Context {#_technical_context}
 
-::: formalpara-title
-**Contents**
-:::
+|Element|Description|
+|--------|----------|
+|Letsevent app|The client-side application|
+|database connector/server|The server which the users connect to when using the application. Manages requests from the users and responses from the database|
+|database|The database which holds any data the users create|
 
-Technical interfaces (channels and transmission media) linking your
-system to its environment. In addition a mapping of domain specific
-input/output to the channels, i.e. an explanation which I/O uses which
-channel.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Many stakeholders make architectural decision based on the technical
-interfaces between the system and its context. Especially infrastructure
-or hardware designers decide these technical interfaces.
-
-::: formalpara-title
-**Form**
-:::
-
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels
-and input/output.
-
-**\<Diagram or Table>**
-
-**\<optionally: Explanation of technical interfaces>**
-
-**\<Mapping Input/Output to Channels>**
 
 # Solution Strategy {#section-solution-strategy}
 
-::: formalpara-title
-**Contents**
-:::
+A short summary of our technical decisions:
+- Programming language Java
+- Maria DB Data Bank server
+- Github for documentation and code
+- Wordpressblog for sharing our progress
 
-A short summary and explanation of the fundamental decisions and
-solution strategies, that shape system architecture. It includes
+We are using the Model-View-Controller pattern.
 
--   technology decisions
+To guarantee the usability of our programm, we are planning on choosing random testers who are not in any way related to our project. This will show us how user friendly our Gui is and where and how we can improve it.
 
--   decisions about the top-level decomposition of the system, e.g.
-    usage of an architectural pattern or design pattern
-
--   decisions on how to achieve key quality goals
-
--   relevant organizational decisions, e.g. selecting a development
-    process or delegating certain tasks to third parties.
-
-::: formalpara-title
-**Motivation**
-:::
-
-These decisions form the cornerstones for your architecture. They are
-the foundation for many other detailed decisions or implementation
-rules.
-
-::: formalpara-title
-**Form**
-:::
-
-Keep the explanations of such key decisions short.
-
-Motivate what was decided and why it was decided that way, based upon
-problem statement, quality goals and key constraints. Refer to details
-in the following sections.
-
-See [Solution Strategy](https://docs.arc42.org/section-4/) in the arc42
-documentation.
-
+The security of the user data will be ensured by a strong and safe encryption algorythm.
 # Building Block View {#section-building-block-view}
 
-::: formalpara-title
-**Content**
-:::
-
-The building block view shows the static decomposition of the system
-into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers,
-functions, macros, operations, data structures, ...) as well as their
-dependencies (relationships, associations, ...)
-
-This view is mandatory for every architecture documentation. In analogy
-to a house this is the *floor plan*.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Maintain an overview of your source code by making its structure
-understandable through abstraction.
-
-This allows you to communicate with your stakeholder on an abstract
-level without disclosing implementation details.
-
-::: formalpara-title
-**Form**
-:::
-
-The building block view is a hierarchical collection of black boxes and
-white boxes (see figure below) and their descriptions.
-
-![Hierarchy of building blocks](images/05_building_blocks-EN.png)
-
-**Level 1** is the white box description of the overall system together
-with black box descriptions of all contained building blocks.
-
-**Level 2** zooms into some building blocks of level 1. Thus it contains
-the white box description of selected building blocks of level 1,
-together with black box descriptions of their internal building blocks.
-
-**Level 3** zooms into selected building blocks of level 2, and so on.
-
-See [Building Block View](https://docs.arc42.org/section-5/) in the
-arc42 documentation.
+![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
 ## Whitebox Overall System {#_whitebox_overall_system}
 
@@ -538,49 +265,23 @@ Remark: The main criterion for the choice of possible scenarios
 **not** important to describe a large number of scenarios. You should
 rather document a representative selection.
 
-::: formalpara-title
-**Motivation**
-:::
+## \<Runtime Signing up> {#__runtime_scenario_1}
 
-You should understand how (instances of) building blocks of your system
-perform their job and communicate at runtime. You will mainly capture
-scenarios in your documentation to communicate your architecture to
-stakeholders that are less willing or able to read and understand the
-static models (building block view, deployment view).
+![](images/createuser.png)
 
-::: formalpara-title
-**Form**
-:::
+- To create a user, the client sends a request to the server, which then creates the user by storing it to the database.
 
-There are many notations for describing scenarios, e.g.
+## \<Runtime Loging in> {#__runtime_scenario_2}
 
--   numbered list of steps (in natural language)
+![](images/login.png)
 
--   activity diagrams or flow charts
+- To login the client sends a request to the server. To server compares the credentials with the database. If successfull the servers provides an access token.
 
--   sequence diagrams
+## \<Runtime Creating an event> {#__runtime_scenario_n}
 
--   BPMN or EPCs (event process chains)
+![](images/createevent.png)
 
--   state machines
-
--   ...
-
-See [Runtime View](https://docs.arc42.org/section-6/) in the arc42
-documentation.
-
-## \<Runtime Scenario 1> {#__runtime_scenario_1}
-
--   *\<insert runtime diagram or textual description of the scenario>*
-
--   *\<insert description of the notable aspects of the interactions
-    between the building block instances depicted in this diagram.\>*
-
-## \<Runtime Scenario 2> {#__runtime_scenario_2}
-
-## ... {#_}
-
-## \<Runtime Scenario n> {#__runtime_scenario_n}
+- To create an event, the client sends a request to the server, which then creates the event by storing it to the database.
 
 # Deployment View {#section-deployment-view}
 
@@ -798,7 +499,7 @@ The reason behind this is a clear seperation between the elements, which allows 
 
 ## Quality Scenarios {#_quality_scenarios}
 
--   Within 10 minutes, the user can complete the event creation process, after which, the event is saved in the database
+- Within 10 minutes, the user can complete the event creation process, after which, the event is saved in the database
 - When the user creates an account, a hash algorithm is applied to the credentials before saving in the database
 - After completing the software update, the development team can apply the update within 2 hours
 - Should the database become unavailable, a message will be displayed to the user and the admins will be notified. Unavailability must not be more than 5h per week
