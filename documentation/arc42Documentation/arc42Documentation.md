@@ -84,6 +84,8 @@ The security of the user data will be ensured by a strong and safe encryption al
 
 ![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
+# Runtime View {#section-runtime-view}
+
 ## \<Runtime Signing up> {#__runtime_scenario_1}
 
 ![](images/createuser.png)
@@ -108,53 +110,20 @@ The security of the user data will be ensured by a strong and safe encryption al
 **Content**
 :::
 
-The deployment view describes:
+The below diagramm describes the applications components deployment.
 
-1.  technical infrastructure used to execute your system, with
-    infrastructure elements like geographical locations, environments,
-    computers, processors, channels and net topologies as well as other
-    infrastructure elements and
+![](images/deployment.png)
 
-2.  mapping of (software) building blocks to that infrastructure
-    elements.
+## Software Requirements
 
-Often systems are executed in different environments, e.g. development
-environment, test environment, production environment. In such cases you
-should document all relevant environments.
+- The client is written in Java and thus needs the Java Runtime-Environment to be executed.
+- For the Server the technology used has to be decided
 
-Especially document a deployment view if your software is executed as
-distributed system with more than one computer, processor, server or
-container or when you design and construct your own hardware processors
-and chips.
+## Protocols
 
-From a software perspective it is sufficient to capture only those
-elements of an infrastructure that are needed to show a deployment of
-your building blocks. Hardware architects can go beyond that and
-describe an infrastructure to any level of detail they need to capture.
+- The communication between client and server works with HTTP.
 
-::: formalpara-title
-**Motivation**
-:::
-
-Software does not run without hardware. This underlying infrastructure
-can and will influence a system and/or some cross-cutting concepts.
-Therefore, there is a need to know the infrastructure.
-
-Maybe a highest level deployment diagram is already contained in section
-3.2. as technical context with your own infrastructure as ONE black box.
-In this section one can zoom into this black box using additional
-deployment diagrams:
-
--   UML offers deployment diagrams to express that view. Use it,
-    probably with nested diagrams, when your infrastructure is more
-    complex.
-
--   When your (hardware) stakeholders prefer other kinds of diagrams
-    rather than a deployment diagram, let them use any kind that is able
-    to show nodes and channels of the infrastructure.
-
-See [Deployment View](https://docs.arc42.org/section-7/) in the arc42
-documentation.
+- The communication between the server and the database uses SQL with MariaDBs protocol
 
 ## Infrastructure Level 1 {#_infrastructure_level_1}
 
