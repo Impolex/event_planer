@@ -84,6 +84,8 @@ The security of the user data will be ensured by a strong and safe encryption al
 
 ![](https://github.com/Impolex/event_planer/blob/main_documentation/documentation/diagrams/scope/png/scope.png)
 
+# Runtime View {#section-runtime-view}
+
 ## \<Runtime Signing up> {#__runtime_scenario_1}
 
 ![](images/createuser.png)
