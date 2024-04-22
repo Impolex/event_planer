@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Chat {
     //Attributes
-    private List<Message> messages = new ArrayList<Message>();
-    private List<EventChatView> UIs = new ArrayList<EventChatView>();
+    private List<Message> messages = new ArrayList<>();
+    private List<EventChatView> UIs = new ArrayList<>();
 
 
     //Constructor
@@ -21,8 +21,8 @@ public class Chat {
     /**
      * Adds a new message object, consisting of the supplied user and message text, to the messages list.
      * Also calls updateUI()
-     * @param user
-     * @param messageText
+     * @param user The user instance sending the message
+     * @param messageText The contents of the message
      */
     public void sendMessage(User user, String messageText){
         messages.add(new Message(user, messageText));
@@ -35,7 +35,7 @@ public class Chat {
 
     /**
      * Adds the supplied UI to the UIs list and appends every message to the UIs chat text area
-     * @param UI
+     * @param UI UI instance to be opened
      */
     public void initializeNewUI(EventChatView UI){
         UIs.add(UI);
