@@ -2,7 +2,6 @@ package src.main.classes;
 
 
 import src.main.interfaces.EventViewUI;
-import src.main.interfaces.UI;
 import src.main.ui.EventHostView;
 import src.main.ui.EventParticipatorView;
 
@@ -12,14 +11,14 @@ import java.util.List;
 public class Event {
     //Attributes
     private User host;
-    private List<User> organisators = new ArrayList<User>();
-    private List<User> participants = new ArrayList<User>();
+    private List<User> organisators = new ArrayList<>();
+    private List<User> participants = new ArrayList<>();
     private Chat chat;
     private String title;
     private String description;
     private String date;
     private String place;
-    private ArrayList<EventViewUI> UIs = new ArrayList<EventViewUI>();
+    private ArrayList<EventViewUI> UIs = new ArrayList<>();
 
     //Constructor
     public Event(User host, String title, String description, String place, String date){
@@ -96,7 +95,7 @@ public class Event {
 
     /**
      * Adds the specified user to the participants list, opens a participator view UI and adds the UI to the UIs list.
-     * @param user
+     * @param user The user instance to be added
      */
     public void addParticipator(User user){
         participants.add(user);
@@ -106,7 +105,7 @@ public class Event {
 
     /**
      * Closes the UI of the specified user, removes the UI from the UIs list and removes the user from the participants list.
-     * @param user
+     * @param user The user instance to be removed
      */
     public void removeParticipator(User user) {
         UIs.get(participants.indexOf(user)).closeUI();
@@ -117,8 +116,8 @@ public class Event {
     /**
      * Gives the host status to another user, removing this status from the current host.
      * Checks if the user calling this method is the host, as this action can only be completed by the host.
-     * @param currentUser
-     * @param newHost
+     * @param currentUser The user instance calling this method
+     * @param newHost The user instance to be given host status
      */
     public void newHost(User currentUser, User newHost) {
         if(currentUser!=getHost()){
