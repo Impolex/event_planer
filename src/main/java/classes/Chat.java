@@ -1,6 +1,6 @@
-package src.main.classes;
+package classes;
 
-import src.main.ui.EventChatView;
+import ui.EventChatView;
 
 import java.util.ArrayList;
 import java.util.List;

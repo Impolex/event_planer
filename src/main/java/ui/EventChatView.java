@@ -1,9 +1,9 @@
-package src.main.ui;
+package ui;
 
-import src.main.classes.Chat;
-import src.main.classes.Message;
-import src.main.classes.User;
-import src.main.interfaces.UI;
+import classes.Chat;
+import classes.Message;
+import classes.User;
+import interfaces.UI;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
