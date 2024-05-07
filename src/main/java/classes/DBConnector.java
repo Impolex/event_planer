@@ -1,4 +1,4 @@
-package src.main.classes;
+package classes;
 
 public class DBConnector {
     //Attributes

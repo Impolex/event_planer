@@ -1,4 +1,4 @@
-package src.main.interfaces;
+package interfaces;
 
 public interface UI {
     /**

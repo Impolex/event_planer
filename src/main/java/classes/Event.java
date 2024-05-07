@@ -1,9 +1,9 @@
-package src.main.classes;
+package classes;
 
 
-import src.main.interfaces.EventViewUI;
-import src.main.ui.EventHostView;
-import src.main.ui.EventParticipatorView;
+import interfaces.EventViewUI;
+import ui.EventHostView;
+import ui.EventParticipatorView;
 
 import java.util.ArrayList;
 import java.util.List;

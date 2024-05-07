@@ -1,10 +1,8 @@
-package src.test;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.main.classes.Event;
-import src.main.classes.User;
+import classes.Event;
+import classes.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,5 @@
-package src.main;
-
-import src.main.classes.Event;
-import src.main.classes.User;
+import classes.Event;
+import classes.User;
 
 
 public class Main {

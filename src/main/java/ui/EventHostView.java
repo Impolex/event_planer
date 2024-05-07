@@ -1,9 +1,8 @@
-package src.main.ui;
+package ui;
 
-import src.main.classes.User;
-import src.main.interfaces.EventViewUI;
-import src.main.interfaces.UI;
-import src.main.classes.Event;
+import classes.User;
+import interfaces.EventViewUI;
+import classes.Event;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
