@@ -10,5 +10,6 @@ public class Main {
 
         Event event = new Event(user1, "Crying violently", "I dont fucking know anymore",
                 "My basement", "01.01.2000, 12:00");
+        System.out.println("Something");
     }
 }
