@@ -1,0 +1,21 @@
+@startuml create_event
+
+Actor User
+participant GUI as "LetsEvent GUI"
+participant Backend
+
+User -> GUI : click create event
+GUI --> GUI : display create event view
+
+User -> GUI : set event name
+User -> GUI : set date
+
+loop
+    User -> GUI : add user
+end
+
+User -> GUI : submit
+GUI -> Backend : create event
+Backend -> Backend : save event
+
+@enduml
