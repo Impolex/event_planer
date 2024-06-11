@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="269.0" layoutY="6.0" prefHeight="18.0" prefWidth="87.0" text="event name" textAlignment="CENTER" />
+      <ImageView accessibleText="Your ad here!" fitHeight="82.0" fitWidth="76.0" layoutX="17.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="28.0" layoutY="120.0" mnemonicParsing="false" text="edit" />
+      <Button layoutX="319.0" layoutY="120.0" mnemonicParsing="false" text="edit" />
+      <Button layoutX="25.0" layoutY="354.0" mnemonicParsing="false" text="Chat" />
+      <Button layoutX="52.0" layoutY="271.0" mnemonicParsing="false" text="edit" />
+      <Label layoutX="34.0" layoutY="252.0" text="Your place here!" />
+      <Button layoutX="313.0" layoutY="302.0" mnemonicParsing="false" text="edit" />
+      <Button layoutX="504.0" layoutY="302.0" mnemonicParsing="false" text="edit" />
+      <Button layoutX="493.0" layoutY="354.0" mnemonicParsing="false" text="Cancel event" />
+      <ListView accessibleText="Organisators" layoutX="229.0" layoutY="159.0" prefHeight="141.0" prefWidth="143.0" />
+      <ListView accessibleText="Participants" layoutX="432.0" layoutY="158.0" prefHeight="142.0" prefWidth="143.0" />
+      <DatePicker accessibleText="Date" layoutX="17.0" layoutY="187.0" />
+      <Button layoutX="242.0" layoutY="302.0" mnemonicParsing="false" text="edit" />
+      <Button layoutX="439.0" layoutY="302.0" mnemonicParsing="false" text="edit" />
+   </children>
+</AnchorPane>
