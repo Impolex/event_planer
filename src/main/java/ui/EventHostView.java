@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class EventHostView extends Application implements UI {
+public class EventHostView extends Application implements EventViewUI {
     //Attributes
     private User user;
     private Event event;
