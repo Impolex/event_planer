@@ -60,6 +60,7 @@ public class EventParticipatorView extends Application implements EventViewUI {
                 Scene scene = new Scene(loader.load());
                 stage.setTitle(windowTitle);
                 stage.setScene(scene);
+                StageHelper.addStage(stage);
                 stage.sizeToScene();
                 stage.show();
             } catch (Exception e) {

@@ -32,7 +32,6 @@ public class MainView extends Application{
             e.printStackTrace();
         }
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         try {
