@@ -13,10 +13,10 @@
       <AnchorPane fx:id="content" layoutX="207.0" layoutY="63.0" prefHeight="330.0" prefWidth="387.0" />
       <AnchorPane layoutY="59.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="200.0">
          <children>
-            <Button layoutX="74.0" layoutY="271.0" mnemonicParsing="false" onAction="#createNewEvent" text="Button" />
+            <Button layoutX="74.0" layoutY="271.0" mnemonicParsing="false" onAction="#createNewEvent" text="New Event" />
             <Separator layoutY="241.0" prefHeight="3.0" prefWidth="200.0" />
             <Separator layoutY="102.0" prefWidth="200.0" />
-            <Label layoutX="87.0" layoutY="55.0" text="Label" />
+            <Label layoutX="87.0" layoutY="55.0" text="Account" />
             <ListView layoutY="104.0" prefHeight="136.0" prefWidth="200.0" />
          </children>
       </AnchorPane>

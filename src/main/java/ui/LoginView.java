@@ -1,9 +1,11 @@
 package ui;
 
 import javafx.application.Application;
+import javafx.application.Preloader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class LoginView extends Application {
@@ -15,6 +17,8 @@ public class LoginView extends Application {
             FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("login-page.fxml"));
             Scene scene = new Scene(loader.load());
             stage.setTitle("Login");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.showAndWait();
             StageHelper.addStage(stage);
             stage.setScene(scene);
             stage.show();
