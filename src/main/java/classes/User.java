@@ -14,8 +14,9 @@ public class User {
     private Notification notifications;
 
     //Constructor
-    public User(){
-
+    public User(String userName, int userId){
+        this.userName = userName;
+        this.userId = userId;
     }
 
     //Methods

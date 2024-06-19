@@ -12,7 +12,7 @@ public class Event {
     //Attributes
     private User host;
     private List<User> organisators = new ArrayList<>();
-    private List<User> participants = new ArrayList<>();
+    private List<EventMember> participants = new ArrayList<>();
     private Chat chat;
     private String title;
     private String description;
@@ -28,7 +28,7 @@ public class Event {
         this.place = place;
         this.date = date;
         chat = new Chat();
-        this.participants.add(host);
+        //this.participants.add(host);
         this.organisators.add(host);
         this.host = host;
         EventHostView hostView = new EventHostView("Host View", this, host);
@@ -45,7 +45,7 @@ public class Event {
         return organisators;
     }
 
-    public List<User> getParticipants() {
+    public List<EventMember> getParticipants() {
         return participants;
     }
 
@@ -98,7 +98,7 @@ public class Event {
      * @param user The user instance to be added
      */
     public void addParticipator(User user){
-        participants.add(user);
+        //participants.add(user);
         EventParticipatorView participatorView1 = new EventParticipatorView("Participator View",this, user);
         UIs.add(participatorView1);
     }

@@ -3,175 +3,165 @@ package ui;
 import classes.User;
 import interfaces.EventViewUI;
 import classes.Event;
+import interfaces.UI;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
+import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class EventParticipatorView implements EventViewUI, ActionListener {
+public class EventParticipatorView extends Application implements EventViewUI {
     //Attributes
     private User user;
     private Event event;
-    private BufferedImage myPicture;
-    private JFrame frame;
-    private JPanel userPanel;
-    private JPanel centerPanel;
-    private JPanel titlePanel;
-    private JPanel descriptionPanel;
-    private JPanel datePanel;
-    private JPanel placePanel;
-    private JPanel hostPanel;
-    private JPanel buttonPanel;
-    private JLabel userLabel;
-    private JLabel picLabel;
-    private JLabel titleLabel;
-    private JLabel descriptionLabel;
-    private JLabel dateLabel;
-    private JLabel placeLabel;
-    private JLabel hostLabel;
-    private JButton leaveEventButton;
-    private JButton openChatButton;
+    private String windowTitle;
+
+    @FXML
+    private Label title;
+    @FXML
+    private Label description;
+    @FXML
+    private Label place;
+    @FXML
+    private Label date;
+    @FXML
+    private Label host;
 
     //Constructor
-    public EventParticipatorView(String windowTitle, Event event, User user){
-        this.user = user;
-        this.event = event;
-        setImage();
-        initUI(windowTitle);
+    public EventParticipatorView() {
+        this.windowTitle = "Window Title";
+        this.user = new User("test", 1);
+        this.event = new Event(user, "title", "desc", "place", "date");
     }
+    public EventParticipatorView(String windowTitle, Event event, User user) {
+        this.windowTitle=windowTitle;
+        this.event=event;
+        this.user=user;
+    }
+
+
+    public void init(String[] args) {
+        Platform.runLater(() -> {
+            Application.launch(args);
+        });
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(EventParticipatorView.class.getResource("participator-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setTitle(windowTitle);
+                stage.setScene(scene);
+                StageHelper.addStage(stage);
+                stage.sizeToScene();
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
 
     //Methods
 
     /**
      * Reads the event title, sets it as the labels new text and repaints the label
      */
-    public void repaintTitleLabel(){
+    /*public void repaintTitleLabel(){
         titleLabel.setText("Title: "+event.getTitle());
         this.titleLabel.repaint();
+    }*/
+    @FXML
+    public void repaintTitleLabel() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Eingabe");
+        dialog.setHeaderText("Insert new event title");
+        dialog.showAndWait();
+        if(dialog.getResult()!=null){
+            title.setText("Title: "+dialog.getResult());
+        }
     }
-
     /**
      * Reads the event description, sets it as the labels new text and repaints the label
      */
-    public void repaintDescriptionLabel(){
+    /*public void repaintDescriptionLabel(){
         descriptionLabel.setText("Description: "+event.getDescription());
         this.descriptionLabel.repaint();
+    }*/
+    @FXML
+    public void repaintDescriptionLabel() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Eingabe");
+        dialog.setHeaderText("Insert new event description");
+        dialog.showAndWait();
+        if(dialog.getResult()!=null) {
+            description.setText("Description: " + dialog.getResult());
+        }
     }
 
     /**
      * Reads the event date, sets it as the labels new text and repaints the label
      */
-    public void repaintDateLabel(){
+    /*public void repaintDateLabel(){
         this.dateLabel.setText("Date: "+event.getDate());
         this.dateLabel.repaint();
+    }*/
+    @FXML
+    public void repaintDateLabel() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Eingabe");
+        dialog.setHeaderText("Insert new date");
+        dialog.showAndWait();
+        if(dialog.getResult()!=null) {
+            date.setText("Date: " + dialog.getResult());
+        }
     }
 
     /**
      * Reads the event place, sets it as the labels new text and repaints the label
      */
-    public void repaintPlaceLabel(){
+    /*public void repaintPlaceLabel(){
         this.placeLabel.setText("Place: "+event.getPlace());
         this.placeLabel.repaint();
+    }*/
+    @FXML
+    public void repaintPlaceLabel() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Eingabe");
+        dialog.setHeaderText("Insert new place");
+        dialog.showAndWait();
+        if(dialog.getResult()!=null) {
+            place.setText("Place: " + dialog.getResult());
+        }
     }
 
     public void openChat() {
-        EventChatView chatUI = new EventChatView(event.getTitle()+" chat", user, event.getChat());
+
     }
 
-    public void setImage(){
-        try {
-            myPicture = ImageIO.read(new File("documentation/logo/letsevent_transparent.png"));
-            picLabel = new JLabel(new ImageIcon(myPicture));
-            picLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        }
-        catch (IOException ioException){
-            ioException.printStackTrace();
-        }
-    }
-
-    public void closeUI(){
-        frame.dispose();
-    }
 
     @Override
     public void initUI(String windowTitle) {
-        //Frame
-        frame = new JFrame(windowTitle);
-        frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(picLabel, BorderLayout.NORTH);
 
-        //Username
-        userLabel = new JLabel(user.getUserName());
-        userPanel = new JPanel();
-        userPanel.add(userLabel);
-        userPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        frame.add(userPanel, BorderLayout.WEST);
+    }
 
-        //Event data
-        titleLabel = new JLabel("Title: "+event.getTitle());
-        descriptionLabel = new JLabel("Description: "+event.getDescription());
-        placeLabel = new JLabel("Place: "+event.getPlace());
-        dateLabel = new JLabel("Date: "+event.getDate());
-        hostLabel = new JLabel("Host: "+event.getHost().getUserName());
-
-        titlePanel = new JPanel();
-        descriptionPanel = new JPanel();
-        placePanel = new JPanel();
-        datePanel = new JPanel();
-        hostPanel = new JPanel();
-        buttonPanel = new JPanel();
-
-        titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        placePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        datePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        hostPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        titlePanel.add(titleLabel);
-        descriptionPanel.add(descriptionLabel);
-        placePanel.add(placeLabel);
-        datePanel.add(dateLabel);
-        hostPanel.add(hostLabel);
-
-        //Event Actionbuttons
-        leaveEventButton = new JButton("Leave event");
-        leaveEventButton.addActionListener(this);
-        openChatButton = new JButton("Open chat");
-        openChatButton.addActionListener(this);
-        buttonPanel.add(leaveEventButton);
-        buttonPanel.add(openChatButton);
-
-        //Center panel
-        centerPanel = new JPanel(new GridLayout(6, 1));
-
-        centerPanel.add(titlePanel);
-        centerPanel.add(descriptionPanel);
-        centerPanel.add(placePanel);
-        centerPanel.add(datePanel);
-        centerPanel.add(hostPanel);
-        centerPanel.add(buttonPanel);
-
-        //Finalizing frame
-        frame.add(centerPanel, BorderLayout.CENTER);
-
-        frame.setVisible(true);
+    public void closeUI(){
+        Platform.exit();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==leaveEventButton){
-            event.removeParticipator(user);
-        }
-        else if(e.getSource()==openChatButton){
-            openChat();
-        }
+    public void setImage() {
+
     }
+
+
 }

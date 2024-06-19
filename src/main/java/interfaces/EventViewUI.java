@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.io.IOException;
+
 public interface EventViewUI extends UI{
     /**
      * Reads the event title, sets it as the labels new text and repaints the label
@@ -24,5 +26,7 @@ public interface EventViewUI extends UI{
     /**
      * Opens the chat UI for this event
      */
-    void openChat();
+    private void openChat() throws IOException {
+
+    }
 }

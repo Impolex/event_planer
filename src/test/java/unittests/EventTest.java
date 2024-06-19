@@ -1,3 +1,5 @@
+package unittests;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +16,9 @@ class EventTest {
 
     @BeforeEach
     void prepare() {
-        user1 = new User();
-        user1.setUserId(1);
-        user1.setUserName("user1");
+        user1 = new User("user1", 1);
 
-        test = new User();
-        test.setUserId(999);
-        test.setUserName("testuser");
+        test = new User("testuser", 999);
 
         event = new Event(user1, "Crying violently", "I dont fucking know anymore",
             "My basement", "01.01.2000, 12:00");
