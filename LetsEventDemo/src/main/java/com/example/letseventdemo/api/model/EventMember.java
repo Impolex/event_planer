@@ -42,4 +42,6 @@ public class EventMember {
     public String getRole() {
         return role;
     }
+
+
 }

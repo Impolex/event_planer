@@ -35,13 +35,11 @@ public class EventController {
     public List<EventDTO> getEvents() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        List<Event> events = eventService
+        System.out.println(name);
+        return eventService
                 .getEvents()
                 .stream()
                 .filter(event -> event.isMember(name))
-                .toList();
-        return events
-                .stream()
                 .map(EventMapper::eventDTO)
                 .toList();
     }
@@ -62,11 +60,14 @@ public class EventController {
     }
 
     @PostMapping("/")
-    public EventDTO postEvent(Integer hostID, String title, String description, String place, String date) throws NoPermissionException {
-        Optional<User> user = userService.getUser(hostID);
+    public EventDTO postEvent(String title, String description, String place, String date) throws NoPermissionException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Optional<User> user = userService.getUser(name);
         if (user.isPresent()) {
-            Event event = new Event(user.get(), title, description/*, place*/, date);
+            Event event = new Event(title, description/*, place*/, date);
             Event created = eventService.saveEvent(event);
+            eventService.addMember(event, user.get(), "host");
             EventDTO dto = EventMapper.eventDTO(created);
             return dto;
         }
@@ -119,29 +120,43 @@ public class EventController {
 
     @PostMapping("/{id}/add")
     public void postInvite(@PathVariable("id") Integer id, Integer userID) throws NoPermissionException {
-        Optional<Event> event = eventService.getEvent(id);
-        if (event.isEmpty()) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+
+        Optional<Event> eventOptional = eventService.getEvent(id);
+        if (eventOptional.isEmpty()) {
             throw new NoPermissionException("this event does not exist");
+        }
+        Event event = eventOptional.get();
+        if (!event.isHost(name)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         Optional<User> user = userService.getUser(userID);
         if (user.isEmpty()) {
             throw new NoPermissionException("this user does not exist");
         }
-        eventService.addMember(event.get(), user.get());
+        eventService.addMember(event, user.get());
     }
 
 
 
     @PostMapping("/{id}/remove")
     public void postRemove(@PathVariable("id") Integer id, Integer userID) throws NoPermissionException {
-        Optional<Event> event = eventService.getEvent(id);
-        if (event.isEmpty()) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+
+        Optional<Event> eventOptional = eventService.getEvent(id);
+        if (eventOptional.isEmpty()) {
             throw new NoPermissionException("this event does not exist");
+        }
+        Event event = eventOptional.get();
+        if (!event.isHost(name)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         Optional<User> user = userService.getUser(userID);
         if (user.isEmpty()) {
             throw new NoPermissionException("this user does not exist");
         }
-        eventService.removeMember(event.get(), user.get());
+        eventService.removeMember(event, user.get());
     }
 }

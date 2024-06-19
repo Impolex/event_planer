@@ -1,5 +1,6 @@
 package com.example.letseventdemo.api.model.dto;
 
+import com.example.letseventdemo.api.mapper.EventMemberMapper;
 import com.example.letseventdemo.api.model.Chat;
 import com.example.letseventdemo.api.model.EventMember;
 import com.example.letseventdemo.api.model.User;
@@ -13,7 +14,7 @@ public class EventDTO {
     String title;
     String description;
     String date;
-    List<EventMember> participants;
+    List<EventMemberDTO> participants;
     //String place;
 
     public EventDTO (Integer eventId, String title, String description, String date/*, String place*/, List<EventMember> participants) {
@@ -21,7 +22,7 @@ public class EventDTO {
         this.title = title;
         this.description = description;
         this.date = date;
-        this.participants = participants;
+        this.participants = participants.stream().map(EventMemberMapper::toEventMapperDTO).toList();
         //this.place = place;
     }
     public void setEventId(int id) {
@@ -48,7 +49,7 @@ public class EventDTO {
         return eventId;
     }
 
-    public List<EventMember> getParticipants() {
+    public List<EventMemberDTO> getParticipants() {
         return participants;
     }
 }

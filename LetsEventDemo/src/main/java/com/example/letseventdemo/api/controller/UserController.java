@@ -1,6 +1,9 @@
 package com.example.letseventdemo.api.controller;
 
+import com.example.letseventdemo.api.mapper.NewUserMapper;
+import com.example.letseventdemo.api.mapper.UserMapper;
 import com.example.letseventdemo.api.model.User;
+import com.example.letseventdemo.api.model.dto.UserDTO;
 import com.example.letseventdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/{ids}")
-    public List<User> getUser(@PathVariable("ids") List<Integer> users) {
-        return users.stream().map(u -> userService.getUser(u)).filter(Optional::isPresent).map(Optional::get).toList();
+    public List<UserDTO> getUser(@PathVariable("ids") List<Integer> users) {
+        return users.stream().map(u -> userService.getUser(u)).filter(Optional::isPresent).map(Optional::get).map(NewUserMapper::toUserDTO).toList();
     }
 
     @GetMapping("")
-    public Optional<User> findByName(String name) {
-        return userService.getUser(name);
+    public Optional<UserDTO> findByName(String name) {
+        return userService.getUser(name).map(NewUserMapper::toUserDTO);
     }
 
 }

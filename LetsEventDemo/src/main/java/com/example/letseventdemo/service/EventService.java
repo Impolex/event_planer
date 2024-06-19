@@ -32,16 +32,18 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
-    public int addEvent(Event event) {
-        return -1;
-    }
-
     public Event saveEvent(Event event) {
+        //event.getParticipants().forEach(eventMemberRepository::save);
         return eventRepository.save(event);
     }
 
+    public void addMember(Event event, User user, String role) {
+        EventMember member = event.addParticipator(user, role);
+        eventMemberRepository.save(member);
+        eventRepository.save(event);
+    }
     public void addMember(Event event, User user) {
-        EventMember member = event.addParticipator(user);
+        EventMember member = event.addParticipator(user, "member");
         eventMemberRepository.save(member);
         eventRepository.save(event);
     }
