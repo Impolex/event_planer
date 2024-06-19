@@ -6,9 +6,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginView extends Application {
+
+    @FXML
+    private PasswordField password;
+    @FXML
+    private TextField username;
 
 
     @Override
@@ -17,8 +25,6 @@ public class LoginView extends Application {
             FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("login-page.fxml"));
             Scene scene = new Scene(loader.load());
             stage.setTitle("Login");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.showAndWait();
             StageHelper.addStage(stage);
             stage.setScene(scene);
             stage.show();
@@ -29,6 +35,7 @@ public class LoginView extends Application {
 
     @FXML
     public void loggedIn() throws Exception {
+        //Log in to Account
         MainView mainView = new MainView();
         mainView.start(new Stage());
         this.closeStage("Login");
@@ -39,6 +46,17 @@ public class LoginView extends Application {
             if (stage.getTitle().equals(stageName)){
                 stage.close();
             }
+        }
+    }
+    @FXML
+    public void createAccount(){
+        String code = password.getText();
+        String name = username.getText();
+        if(code.isEmpty()||name.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Username or Password is missing");
+        } else {
+            //create Account
         }
     }
 }
