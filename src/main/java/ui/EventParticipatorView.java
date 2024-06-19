@@ -34,20 +34,41 @@ public class EventParticipatorView extends Application implements EventViewUI {
     private Label host;
 
     //Constructor
-    public EventParticipatorView(String windowTitle, Event event, User user){
-        this.user = user;
-        this.event = event;
+    public EventParticipatorView() {
+        this.windowTitle = "Window Title";
+        this.user = new User();
+        this.event = new Event(user, "title", "desc", "place", "date");
+    }
+    public EventParticipatorView(String windowTitle, Event event, User user) {
         this.windowTitle=windowTitle;
+        this.event=event;
+        this.user=user;
+    }
+
+
+    public void init(String[] args) {
+        Platform.runLater(() -> {
+            Application.launch(args);
+        });
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(EventParticipatorView.class.getResource("participator-view.fxml"));
-        Scene scene = new Scene(loader.load(),600,400);
-        stage.setTitle(windowTitle);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stage) {
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(EventParticipatorView.class.getResource("participator-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setTitle(windowTitle);
+                stage.setScene(scene);
+                stage.sizeToScene();
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
     }
+
 
     //Methods
 

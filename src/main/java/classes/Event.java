@@ -2,9 +2,14 @@ package classes;
 
 
 import interfaces.EventViewUI;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import ui.EventHostView;
 import ui.EventParticipatorView;
+import ui.StageHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +25,7 @@ public class Event {
     private String place;
     private ArrayList<EventViewUI> UIs = new ArrayList<>();
 
+
     //Constructor
     public Event(User host, String title, String description, String place, String date){
         this.chat = new Chat();
@@ -31,11 +37,13 @@ public class Event {
         this.participants.add(host);
         this.organisators.add(host);
         this.host = host;
-        EventHostView hostView = new EventHostView("Host View", this, host);
+        EventHostView hostView = new EventHostView("Host View",this,host);
         UIs.add(hostView);
     }
 
+
     //Methods
+
     public User getHost() {
         return host;
     }
@@ -98,9 +106,14 @@ public class Event {
      * @param user The user instance to be added
      */
     public void addParticipator(User user){
+        System.out.println("Add Participator");
         participants.add(user);
         EventParticipatorView participatorView1 = new EventParticipatorView("Participator View",this, user);
-        UIs.add(participatorView1);
+        Stage stage = new Stage();
+        participatorView1.start(stage);
+        StageHelper.addStage(stage);
+        System.out.println(participants.size());
+        System.out.println(UIs.size());
     }
 
     /**
@@ -108,6 +121,9 @@ public class Event {
      * @param user The user instance to be removed
      */
     public void removeParticipator(User user) {
+        System.out.println("Remove Participator");
+        StageHelper.getStages();
+
         UIs.get(participants.indexOf(user)).closeUI();
         UIs.remove(participants.indexOf(user));
         participants.remove(user);

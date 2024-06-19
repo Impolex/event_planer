@@ -1,55 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TilePane alignment="CENTER" prefHeight="75.0" prefWidth="600.0">
-         <FlowPane.margin>
-            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </FlowPane.margin>
-      </TilePane>
-      <SplitPane dividerPositions="0.09893048128342245" prefHeight="325.0" prefWidth="600.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="100.0">
-               <padding>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </padding>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="405.0">
-               <children>
-                  <VBox alignment="CENTER" layoutX="3.0" layoutY="4.0" prefHeight="239.0" prefWidth="530.0" AnchorPane.bottomAnchor="80.80000000000001" AnchorPane.leftAnchor="3.2000000000000455" AnchorPane.rightAnchor="2.6000000000000227" AnchorPane.topAnchor="4.0">
-                     <children>
-                        <Label text="Label" />
-                        <Separator prefWidth="200.0" />
-                        <Label text="Label" />
-                        <Separator prefHeight="0.0" prefWidth="530.0" />
-                        <Label text="Label" />
-                        <Separator prefWidth="200.0" />
-                        <Label text="Label" />
-                        <Separator prefWidth="200.0" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-                  <ButtonBar layoutX="165.0" layoutY="283.0" prefHeight="26.0" prefWidth="130.0">
-                     <buttons>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                     </buttons>
-                  </ButtonBar>
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
+      <Label layoutX="269.0" layoutY="6.0" prefHeight="18.0" prefWidth="87.0" text="event name" textAlignment="CENTER" />
+      <ImageView accessibleText="Your ad here!" fitHeight="82.0" fitWidth="76.0" layoutX="17.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="25.0" layoutY="354.0" mnemonicParsing="false" text="Chat" />
+      <Label layoutX="34.0" layoutY="252.0" text="Your place here!" />
+      <Button layoutX="493.0" layoutY="354.0" mnemonicParsing="false" text="Cancel event" />
+      <ListView accessibleText="Organisators" layoutX="229.0" layoutY="159.0" prefHeight="141.0" prefWidth="143.0" />
+      <ListView accessibleText="Participants" layoutX="432.0" layoutY="158.0" prefHeight="142.0" prefWidth="143.0" />
+      <DatePicker accessibleText="Date" layoutX="17.0" layoutY="187.0" />
    </children>
-</FlowPane>
-
+</AnchorPane>
