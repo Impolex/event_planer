@@ -20,5 +20,6 @@
             <ListView fx:id="listView" layoutY="104.0" prefHeight="136.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
+      <Button layoutX="240.0" layoutY="27.0" mnemonicParsing="false" onAction="#exitPlatform" text="Close Application" />
    </children>
 </AnchorPane>

@@ -57,7 +57,7 @@ public class EventspageView extends Application {
         placeColumn.setCellValueFactory(new PropertyValueFactory<>("place"));
         participantsColumn.setCellValueFactory(new PropertyValueFactory<>("participants"));
         organizerColumn.setCellValueFactory(new PropertyValueFactory<>("host"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        //statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         meineTableView.setItems(eventlist);
     }

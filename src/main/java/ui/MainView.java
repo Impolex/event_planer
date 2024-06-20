@@ -3,6 +3,7 @@ package ui;
 import classes.Event;
 import classes.User;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.application.Preloader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,5 +101,9 @@ public class MainView extends Application{
                 stage.close();
             }
         }
+    }
+    @FXML
+    public void exitPlatform(){
+        Platform.exit();
     }
 }

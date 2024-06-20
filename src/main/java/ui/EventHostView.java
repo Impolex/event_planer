@@ -37,12 +37,12 @@ public class EventHostView extends Application implements EventViewUI {
 
 
     //Demonstration
-    int userCount = 2;
+    int userCount = 0;
 
 
     //Constructor
     public EventHostView() {
-        this.windowTitle = "Window Title";
+        this.windowTitle = "test";
         this.user = new User();
         this.event = new Event(user, "title", "desc", "place", "date");
     }
@@ -203,8 +203,23 @@ public class EventHostView extends Application implements EventViewUI {
         User user = new User();
         user.setUserId(userCount);
         user.setUserName("user"+userCount);
-        event.addParticipator(user);
+        TempParticipatorHelper.addParticipator(user);
+        System.out.println(TempParticipatorHelper.getParticipators());
+        System.out.println(user.getUserName());
         userCount++;
+
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(EventHostView.class.getResource("participator-view.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(user.getUserName());
+            StageHelper.addStage(stage);
+            stage.show();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     /*else if (e.getSource()==removeParticipatorButton) {
         //Uses the Value returned from the option pane to get the specified user from the event.
@@ -220,19 +235,32 @@ public class EventHostView extends Application implements EventViewUI {
     }*/
     @FXML
     private void removeParticipator(){
-        Stage stage = new Stage();
+        Stage stage1 = new Stage();
+        stage1.setTitle("removeParticipator");
+        StageHelper.addStage(stage1);
         VBox buttons = new VBox(10);
-        for (int i=0;i<userCount;i++){
-            Button button = new Button("Participator"+i);
-            System.out.println(button.getText());
-            button.setOnAction(e -> closeStage(button.getText()));
-            buttons.getChildren().add(button);
+        System.out.println(userCount);
+        List<User> temp = TempParticipatorHelper.getParticipators();
+        for (User user : temp){
+            for (int i=0;i< temp.size();i++){
+                Button button = new Button(user.getUserName());
+                System.out.println(button.getText());
+                System.out.println(user.getUserName());
+                button.setOnAction(e -> {
+                    closeStage(user.getUserName());
+                    TempParticipatorHelper.removeParticipator(user);
+                    closeStage(stage1.getTitle());
+                    userCount--;
+                });
+                buttons.getChildren().add(button);
+            }
         }
+
         Scene scene = new Scene(buttons,200,200);
-        stage.setScene(scene);
-        stage.show();
+        stage1.setScene(scene);
+        stage1.show();
     }
-    @FXML
+
     private void closeStage(String stageName){
         for(Stage stage : StageHelper.getStages()){
             if (stage.getTitle().equals(stageName)) {
@@ -246,11 +274,11 @@ public class EventHostView extends Application implements EventViewUI {
     public void initUI(String windowTitle) {
 
     }
-
+    @FXML
     public void closeUI(){
         Stage stage = new Stage();
         MainView mainView =  new MainView();
-
+        closeStage(this.windowTitle);
         mainView.start(stage);
     }
 
