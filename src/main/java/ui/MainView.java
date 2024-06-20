@@ -27,6 +27,7 @@ public class MainView extends Application{
     private ListView<Event> listView;
     @FXML
     private ObservableList<Event> observableList = FXCollections.observableArrayList();
+    private String stagetitle;
 
 
     public MainView(){
@@ -56,15 +57,18 @@ public class MainView extends Application{
 
     }
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage){
         try {
             FXMLLoader loader = new FXMLLoader(MainView.class.getResource("main-view.fxml"));
             Parent root = loader.load();
             MainView controller = loader.getController();
             Scene scene = new Scene(root);
+            stagetitle="test";
+            stage.setTitle(stagetitle);
             stage.setScene(scene);
             controller.setFullScreen(stage);
             stage.show();
+            StageHelper.addStage(stage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,14 +80,25 @@ public class MainView extends Application{
 
 
 
-    public void createNewEvent() throws Exception{
+    public void createNewEvent() {
+        repaintContent("operator-view.fxml");
+    }
+    public void repaintContent(String ressource){
         try{
             content.getChildren().clear();
-            FXMLLoader loader = new FXMLLoader(MainView.class.getResource("operator-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainView.class.getResource(ressource));
             Parent root = loader.load();
-            content.getChildren().addAll(root);
+            content.getChildren().add(root);
         } catch (Exception e){
             e.printStackTrace();
+        }
+    }
+    public void kill(){
+        for(Stage stage : StageHelper.getStages()){
+            if (stage.getTitle().equals("test")) {
+                System.out.println(stage.getTitle());
+                stage.close();
+            }
         }
     }
 }

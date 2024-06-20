@@ -69,6 +69,7 @@ public class EventHostView extends Application implements EventViewUI {
                 stage.setScene(scene);
                 stage.sizeToScene();
                 stage.show();
+                StageHelper.addStage(stage);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -247,7 +248,10 @@ public class EventHostView extends Application implements EventViewUI {
     }
 
     public void closeUI(){
-        Platform.exit();
+        Stage stage = new Stage();
+        MainView mainView =  new MainView();
+
+        mainView.start(stage);
     }
 
     @Override
