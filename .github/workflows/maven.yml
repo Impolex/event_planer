@@ -6,6 +6,10 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+# This pipeline is triggered with every push and pull-request from main branch
+# The pipeline runs on windows and executes the maven build
+# With the maven build, it runs every test from the code
+
 name: Java CI with Maven
 
 on:
