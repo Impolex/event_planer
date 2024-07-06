@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EventspageView" >
+   <children>
+      <Label layoutX="286.0" layoutY="14.0" text="Your Events" />
+      <TableView fx:id="meineTableView" layoutX="5.0" layoutY="51.0" prefHeight="343.0" prefWidth="591.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Gruppenbild" />
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date and Time" />
+            <TableColumn fx:id="placeColumn" prefWidth="75.0" text="Place" />
+            <TableColumn fx:id="participantsColumn" prefWidth="75.0" text="No. of Participants" />
+            <TableColumn fx:id="organizerColumn" prefWidth="75.0" text="Organizer" />
+            <TableColumn fx:id="statusColumn" prefWidth="64.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
