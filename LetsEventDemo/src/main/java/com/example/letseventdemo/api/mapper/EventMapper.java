@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EventMapper {
 
-    public static EventDTO eventDTO(Event event) {
+    public static EventDTO toEventDTO(Event event) {
         Integer eventId = event.getId();
         String title = event.getTitle();
         String description = event.getDescription();

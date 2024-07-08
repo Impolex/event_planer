@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GroupMapper {
 
-    public static GroupDTO toGroupDTP(Group group) {
+    public static GroupDTO toGroupDTO(Group group) {
         Integer id = group.getId();
         String name = group.getName();
         List<GroupMember> members = group.getMembers();

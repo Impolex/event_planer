@@ -2,8 +2,7 @@ package com.example.letseventdemo.api.controller;
 
 import com.example.letseventdemo.api.component.JwtUtil;
 import com.example.letseventdemo.api.model.User;
-import com.example.letseventdemo.api.model.dto.UserDTO;
-import com.example.letseventdemo.service.UserService;
+import com.example.letseventdemo.service.MyUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,15 +15,16 @@ import java.util.Optional;
 @RestController
 public class AuthController {
 
-    UserService userService;
+    MyUserService userService;
 
     JwtUtil jwtUtil;
 
-    public AuthController(UserService userService, JwtUtil jwtUtil) {
+    public AuthController(MyUserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
 
+    //for security reasons this should rather be a POST
     @GetMapping("/login")
     public String getLogin(Optional<String> username, Optional<String> password) {
         if (username.isEmpty()) {
@@ -62,7 +62,13 @@ public class AuthController {
 
     @DeleteMapping("/delete")
     public void delete() {
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Optional<User> user = userService.getUser(username);
+        if (!user.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        userService.deleteUser(username);
     }
 
     @GetMapping("/me")
